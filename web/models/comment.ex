@@ -4,7 +4,7 @@ defmodule HelloPhoenix.Comment do
   schema "comments" do
     field :name, :string
     field :body, :string
-    belongs_to :article, HelloPhoenix.Article
+    belongs_to :article, HelloPhoenix.Article, foreign_key: :article_id
 
     timestamps()
   end

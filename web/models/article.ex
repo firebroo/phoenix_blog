@@ -4,9 +4,9 @@ defmodule HelloPhoenix.Article do
   schema "articles" do
     field :title, :string
     field :body, :string
-    belongs_to :category, HelloPhoenix.Category
+    belongs_to :category, HelloPhoenix.Category, foreign_key: :category_id
 
-    has_many :comments, HelloPhoenix.Comment
+    has_many :comments, HelloPhoenix.Comment, on_delete: :delete_all
 
     timestamps()
   end

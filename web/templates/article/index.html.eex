@@ -1,0 +1,17 @@
+范畴:
+<ul>
+<%= for category <- @categorys do %>
+    <li><%= category.name %> </li>
+<% end %>
+</ul>
+<br><br>
+<%= for article <- @category.articles do %>
+    标题: <%= article.title %>
+    内容: <%= article.body %>
+    <%= link "Show", to: category_article_path(@conn, :show, @category_id, article), class: "btn btn-default btn-xs" %>
+    <%= link "Edit", to: category_article_path(@conn, :edit, @category_id, article), class: "btn btn-default btn-xs" %>
+    <%= link "Delete", to: category_article_path(@conn, :delete, @category_id, article), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-       danger btn-xs" %>
+    <br><br>
+<% end %>
+
+<%= link "New Article", to: category_article_path(@conn, :new, @category_id) %>

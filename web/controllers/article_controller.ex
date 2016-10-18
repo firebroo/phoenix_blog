@@ -47,13 +47,13 @@ defmodule HelloPhoenix.ArticleController do
 
         changeset = Article.changeset(%Article{}, article_params)
         case Repo.insert(changeset) do
-        {:ok, _} ->
+        {:ok, _article} ->
            conn
            |> put_flash(:info, "文章创建成功.")
            |> redirect(to: category_article_path(conn, :index, category_id))
         {:error, _changeset} ->
            conn
-           |> put_flash(:error, "文章删除失败")
+           |> put_flash(:error, "文章创建失败")
            |> render("new.html")
         end
 

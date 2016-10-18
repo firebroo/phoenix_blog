@@ -17,6 +17,11 @@ defmodule HelloPhoenix.Router do
     pipe_through :browser # Use the default browser stack
 
     get "/", PageController, :index
+    get "/user/home", SessionController, :home
+    get "/user/login", SessionController, :new
+    post "/user/login", SessionController, :create
+    get "/user/register", UserController, :new
+    post "/user/register", UserController, :create
     resources "/categorys", CategoryController do
         resources "/articles", ArticleController do
             resources "/comments", CommentController, only: [:create]

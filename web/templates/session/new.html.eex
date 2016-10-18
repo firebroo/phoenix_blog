@@ -1,0 +1,5 @@
+<h2>登陆</h2>
+
+<%= render "form.html", changeset: @changeset,
+                        action: session_path(@conn, :create) %>
+

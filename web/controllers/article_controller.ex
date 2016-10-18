@@ -51,9 +51,10 @@ defmodule HelloPhoenix.ArticleController do
            conn
            |> put_flash(:info, "文章创建成功.")
            |> redirect(to: category_article_path(conn, :index, category_id))
-        {:error, _changeset} ->
+        {:error, changeset} ->
            conn
-           |> put_flash(:error, "文章创建失败")
+           |> assign(:changeset, changeset) 
+           |> assign(:category_id, category_id) 
            |> render("new.html")
         end
 

@@ -18,5 +18,7 @@ defmodule HelloPhoenix.Article do
     struct
     |> cast(params, [:title, :body, :category_id])
     |> validate_required([:title, :body])
+    |> validate_length(:title, min: 5)
+    |> unique_constraint(:title)
   end
 end

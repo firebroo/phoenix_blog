@@ -16,5 +16,6 @@ defmodule HelloPhoenix.Comment do
     struct
     |> cast(params, [:name, :body, :article_id])
     |> validate_required([:name, :body])
+    |> validate_length(:body, min: 5)
   end
 end

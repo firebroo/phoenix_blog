@@ -7,6 +7,6 @@ defmodule HelloPhoenix.Repo.Migrations.CreateCategory do
 
       timestamps()
     end
-
+    create unique_index(:categorys, [:name])
   end
 end

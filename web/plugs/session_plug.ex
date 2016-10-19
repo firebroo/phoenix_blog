@@ -8,6 +8,8 @@ defmodule HelloPhoenix.Plugs.Session do
   def call(conn, _params) do
     if get_session(conn, :user_id) == nil do
       conn |> redirect(to: "/users/login") |> halt
+    else
+      conn
     end
   end
 

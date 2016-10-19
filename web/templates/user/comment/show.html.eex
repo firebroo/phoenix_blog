@@ -1,0 +1,23 @@
+<h2>Show comment</h2>
+
+<ul>
+
+  <li>
+    <strong>Name:</strong>
+    <%= @comment.name %>
+  </li>
+
+  <li>
+    <strong>Body:</strong>
+    <%= @comment.body %>
+  </li>
+
+  <li>
+    <strong>Article:</strong>
+    <%= @comment.article_id %>
+  </li>
+
+</ul>
+
+<%= link "Edit", to: user_comment_path(@conn, :edit, @comment) %>
+<%= link "Back", to: user_comment_path(@conn, :index) %>

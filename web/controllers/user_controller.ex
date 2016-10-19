@@ -15,11 +15,10 @@ defmodule HelloPhoenix.UserController do
      case Repo.insert(changeset) do
         {:ok, _user} ->
           conn
-          |> put_flash(:info, "创建用户成功")
+          |> put_flash(:info, "创建用户成功,请登陆")
           |> redirect(to: Helpers.session_path(conn, :new))
-        {:error, changset} ->
+        {:error, changeset} ->
           conn
-          |> put_flash(:error, "创建用户失败")
           |> assign(:changeset, changeset)
           |> render("new.html")
      end

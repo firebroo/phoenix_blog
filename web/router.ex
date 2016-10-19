@@ -9,15 +9,25 @@ defmodule HelloPhoenix.Router do
     plug :put_secure_browser_headers
   end
 
+  pipeline :session do
+    plug HelloPhoenix.Plugs.Session
+  end
+
   pipeline :api do
     plug :accepts, ["json"]
+  end
+
+  scope "/users", HelloPhoenix do
+    pipe_through [:browser, :session]
+
+    get "/home", SessionController, :home
   end
 
   scope "/", HelloPhoenix do
     pipe_through :browser # Use the default browser stack
 
     get "/", PageController, :index
-    get "/users/home", SessionController, :home
+    get "/users/index", SessionController, :index
     get "/users/login", SessionController, :new
     post "/users/login", SessionController, :create
     get "/users/register", UserController, :new

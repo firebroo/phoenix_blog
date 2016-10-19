@@ -17,6 +17,8 @@ defmodule HelloPhoenix.SessionController do
     if user.password == password do
       conn
       |> put_flash(:info, "登陆成功")
+      |> put_session(:user_id, user.id)
+      |> put_session(:username, user.name)
       |> redirect(to: session_path(conn, :home))
     end
 
@@ -28,6 +30,9 @@ defmodule HelloPhoenix.SessionController do
   end
 
   def home(conn, _params) do
-    render conn, "home.html"
+    conn
+    |> assign(:username, get_session(conn, :username))
+    |> render("home.html")
   end
+
 end

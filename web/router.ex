@@ -17,10 +17,14 @@ defmodule HelloPhoenix.Router do
     plug :accepts, ["json"]
   end
 
-  scope "/users", HelloPhoenix do
+  scope "/users", HelloPhoenix, as: :user do
     pipe_through [:browser, :session]
 
+    get "/", SessionController, :home
     get "/home", SessionController, :home
+    resources "/categorys", User.CategoryController
+    resources "/articles", User.ArticleController
+    resources "/comments", User.CommentController
   end
 
   scope "/", HelloPhoenix do
@@ -29,6 +33,7 @@ defmodule HelloPhoenix.Router do
     get "/", PageController, :index
     get "/users/index", SessionController, :index
     get "/users/login", SessionController, :new
+    get "/users/logout", SessionController, :delete
     post "/users/login", SessionController, :create
     get "/users/register", UserController, :new
     post "/users/register", UserController, :create

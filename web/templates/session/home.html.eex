@@ -1,1 +1,12 @@
-<%= @username %>
+<h3>hello, <%= @username %></h3>
+<ul>
+<li>
+<%= link "管理范畴", to: user_category_path(@conn, :index) %>
+</li>
+<li>
+<%= link "管理文章", to: user_article_path(@conn, :index) %>
+</li>
+<li>
+<%= link "管理评论", to: user_comment_path(@conn, :index) %>
+</li>
+</ul>

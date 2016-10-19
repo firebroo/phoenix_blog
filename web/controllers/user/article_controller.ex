@@ -4,7 +4,10 @@ defmodule HelloPhoenix.User.ArticleController do
   alias HelloPhoenix.{Article, Category}
 
   def index(conn, _params) do
-    articles = Repo.all(Article)
+    articles = Article
+    |> Repo.all
+    |> Repo.preload(:category)
+
     render(conn, "index.html", articles: articles)
   end
 

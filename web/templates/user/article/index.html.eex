@@ -6,6 +6,7 @@
       <th>Title</th>
       <th>Body</th>
       <th>Reading</th>
+      <th>Category</th>
 
       <th></th>
     </tr>
@@ -16,6 +17,7 @@
       <td><%= article.title %></td>
       <td><%= article.body %></td>
       <td><%= article.reading %></td>
+      <td><%= category_name(article) %></td>
 
       <td class="text-right">
         <%= link "Show", to: user_article_path(@conn, :show, article), class: "btn btn-default btn-xs" %>

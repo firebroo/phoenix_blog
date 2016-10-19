@@ -19,7 +19,7 @@ defmodule HelloPhoenix.SessionController do
       |> put_flash(:info, "登陆成功")
       |> put_session(:user_id, user.id)
       |> put_session(:username, user.name)
-      |> redirect(to: session_path(conn, :home))
+      |> redirect(to: user_session_path(conn, :home))
     end
 
     changeset = User.changeset(%User{})
@@ -35,4 +35,10 @@ defmodule HelloPhoenix.SessionController do
     |> render("home.html")
   end
 
+  def delete(conn, _params) do
+    conn
+    |> delete_session(:user_id)
+    |> delete_session(:username)
+    |> redirect(to: session_path(conn, :new))
+  end
 end

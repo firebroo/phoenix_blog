@@ -63,21 +63,14 @@ defmodule HelloPhoenix.SessionController do
 
       case File.cp(upload.path, path) do
         :ok ->  # 上传成功, 将图片地址入库
-          changeset =  User
+          User
           |> Repo.get!(user_id)
           |> User.changeset_avatar(%{"avatar" => "/images/#{user_id}-profile#{extension}"})
+          |> Repo.update
 
-          case Repo.update(changeset) do
-            {:ok, _user} ->
-              conn
-              |> put_flash(:info, "需改头像成功")
-              |> redirect(to: user_session_path(conn, :home))
-            {:error, changeset} ->
-              conn
-              |> assign(:changeset, changeset)
-              |> put_flash(:error, "需改头像失败")
-              |> render("photo_form.html")
-           end
+          conn
+          |> put_flash(:info, "需改头像成功")
+          |> redirect(to: user_session_path(conn, :home))
         {:error, _} ->
           conn
           |> assign(:changeset, changeset)

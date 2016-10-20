@@ -32,7 +32,7 @@ defmodule HelloPhoenix.Router do
   scope "/", HelloPhoenix do
     pipe_through :browser # Use the default browser stack
 
-    get "/", PageController, :index
+    get "/", CategoryController, :index
     get "/users/index", SessionController, :index
     get "/users/login", SessionController, :new
     get "/users/logout", SessionController, :delete

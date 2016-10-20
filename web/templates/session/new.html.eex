@@ -1,4 +1,5 @@
-<h2>登陆</h2>
+<h2>登陆</h2> 
+还没有账户? 点击<%= link "注册", to: user_path(@conn, :new) %>
 
 <%= render "form.html", changeset: @changeset,
                         action: session_path(@conn, :create) %>

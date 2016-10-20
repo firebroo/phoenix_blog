@@ -1,3 +1,4 @@
+<%= link "后台管理", to: session_path(@conn, :new) %>
 <h2>Listing categorys</h2>
 
 <table class="table">

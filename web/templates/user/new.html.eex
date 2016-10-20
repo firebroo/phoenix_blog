@@ -1,4 +1,5 @@
-<h2>New User</h2>
+<h2>注册用户</h2>
+已有账户? 点此<%= link "登陆", to: session_path(@conn, :new) %>
 
 <%= render "form.html", changeset: @changeset,
                         action: user_path(@conn, :create) %>

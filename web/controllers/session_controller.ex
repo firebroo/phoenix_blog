@@ -2,7 +2,6 @@ defmodule HelloPhoenix.SessionController do
   use HelloPhoenix.Web, :controller
 
   alias HelloPhoenix.{User}
-  import Comeonin.Bcrypt, only: [checkpw: 2]
   
   def new(conn, _params) do
     changeset = User.changeset(%User{})

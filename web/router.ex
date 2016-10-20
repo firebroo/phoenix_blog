@@ -22,6 +22,8 @@ defmodule HelloPhoenix.Router do
 
     get "/", SessionController, :home
     get "/home", SessionController, :home
+    get "/upload_avatar", SessionController, :new_avatar
+    post "/upload_avatar", SessionController, :update_avatar
     get "/password/reset", UserController, :edit
     put  "/password/reset", UserController, :update
     resources "/categorys", User.CategoryController

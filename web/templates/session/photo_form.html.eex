@@ -1,0 +1,10 @@
+<%= form_for @changeset, user_session_path(@conn, :update_avatar), [multipart: true], fn f -> %>
+<div class="form-group">
+    <label>Avatar</label>
+    <%= file_input f, :avatar, class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= submit "Submit", class: "btn btn-primary" %>
+  </div>
+<% end %>

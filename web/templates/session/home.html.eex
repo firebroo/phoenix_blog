@@ -11,5 +11,7 @@
 </li>
 </ul>
 <%= link "修改密码", to: user_user_path(@conn, :edit) %>
+<img src=<%= @avatar %> alt="20">
+<%= link "修改头像", to: user_session_path(@conn, :new_avatar) %>
 <br>
 <%= link "退出", to: session_path(@conn, :delete) %>

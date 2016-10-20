@@ -1,7 +1,6 @@
 defmodule HelloPhoenix.User do
   use HelloPhoenix.Web, :model
 
-  alias Ecto.Changeset
   alias HelloPhoenix.Repo
 
   import Comeonin.Bcrypt, only: [hashpwsalt: 1, checkpw: 2]
@@ -9,6 +8,7 @@ defmodule HelloPhoenix.User do
   schema "users" do
     field :name, :string
     field :password, :string
+    field :avatar, :string
 
     field :old_password, :string, virtual: true
     field :password_confirmation, :string, virtual: true
@@ -23,6 +23,12 @@ defmodule HelloPhoenix.User do
     |> cast(params, [:name, :password])
     |> validate_required([:name, :password])
     |> unique_constraint(:name)
+  end
+
+  def changeset_avatar(struct, params \\ %{}) do
+    struct
+    |> cast(params, [:avatar])
+    |> validate_required([:avatar])
   end
 
   @doc """

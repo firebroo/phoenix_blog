@@ -38,9 +38,53 @@ defmodule HelloPhoenix.SessionController do
   end
 
   def home(conn, _params) do
+    user = Repo.get!(User, get_session(conn, :user_id)) 
+
     conn
     |> assign(:username, get_session(conn, :username))
+    |> assign(:avatar, user.avatar)
     |> render("home.html")
+  end
+
+  def new_avatar(conn, _params) do
+    changeset = User.changeset(%User{})
+
+    conn
+    |> assign(:changeset, changeset)
+    |> render("photo_form.html")
+  end
+
+  def update_avatar(conn, %{"user" => user_params}) do
+    changeset = User.changeset(%User{})
+    user_id = get_session(conn, :user_id)
+    if upload = user_params["avatar"] do
+      extension = Path.extname(upload.filename)
+      path = "priv/static/images/#{user_id}-profile#{extension}"
+
+      case File.cp(upload.path, path) do
+        :ok ->  # 上传成功, 将图片地址入库
+          changeset =  User
+          |> Repo.get!(user_id)
+          |> User.changeset_avatar(%{"avatar" => "/images/#{user_id}-profile#{extension}"})
+
+          case Repo.update(changeset) do
+            {:ok, _user} ->
+              conn
+              |> put_flash(:info, "需改头像成功")
+              |> redirect(to: user_session_path(conn, :home))
+            {:error, changeset} ->
+              conn
+              |> assign(:changeset, changeset)
+              |> put_flash(:error, "需改头像失败")
+              |> render("photo_form.html")
+           end
+        {:error, _} ->
+          conn
+          |> assign(:changeset, changeset)
+          |> put_flash(:error, "需改头像失败")
+          |> render("photo_form.html")
+      end
+    end
   end
 
   def delete(conn, _params) do

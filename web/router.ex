@@ -23,7 +23,6 @@ defmodule HelloPhoenix.Router do
     get "/", SessionController, :home
     get "/home", SessionController, :home
     get "/password/reset", UserController, :edit
-    post "/password/reset", UserController, :update
     put  "/password/reset", UserController, :update
     resources "/categorys", User.CategoryController
     resources "/articles", User.ArticleController

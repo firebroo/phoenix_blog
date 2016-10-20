@@ -25,7 +25,9 @@ defmodule HelloPhoenix.UserController do
   end
 
   def edit(conn, _params) do
-    changeset = User.changeset(%User{})
+   changeset = User
+   |> Repo.get!(get_session(conn, :user_id))
+   |> User.changeset
 
     conn
     |> assign(:changeset, changeset)

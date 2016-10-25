@@ -29,6 +29,7 @@ defmodule HelloPhoenix.Router do
     resources "/categorys", User.CategoryController
     resources "/articles", User.ArticleController
     resources "/comments", User.CommentController
+    resources "/tags", User.TagController
   end
 
   scope "/", HelloPhoenix do

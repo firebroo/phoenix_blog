@@ -9,6 +9,9 @@
 <li>
 <%= link "管理评论", to: user_comment_path(@conn, :index) %>
 </li>
+<li>
+<%= link "管理标签", to: user_tag_path(@conn, :index) %>
+</li>
 </ul>
 <%= link "修改密码", to: user_user_path(@conn, :edit) %>
 <img src=<%= @avatar %> alt="20">

@@ -1,0 +1,13 @@
+<h2>Show tag</h2>
+
+<ul>
+
+  <li>
+    <strong>Name:</strong>
+    <%= @tag.name %>
+  </li>
+
+</ul>
+
+<%= link "Edit", to: user_tag_path(@conn, :edit, @tag) %>
+<%= link "Back", to: user_tag_path(@conn, :index) %>

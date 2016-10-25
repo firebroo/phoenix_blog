@@ -1,7 +1,7 @@
 defmodule HelloPhoenix.User.ArticleController do
   use HelloPhoenix.Web, :controller
 
-  alias HelloPhoenix.{Article, Category}
+  alias HelloPhoenix.{Article, Category, Tag}
 
   def index(conn, _params) do
     articles = Article
@@ -12,10 +12,14 @@ defmodule HelloPhoenix.User.ArticleController do
   end
 
   def new(conn, _params) do
-    categorys = Repo.all(Category)
+    categorys = Repo.all(Category) |> Repo.preload(:tags)
 
     changeset = Article.changeset(%Article{})
-    render(conn, "new.html", changeset: changeset, categorys: categorys)
+
+    conn
+    |> assign(:categorys, categorys)
+    |> assign(:changeset, changeset)
+    |> render("new.html")
   end
 
   def create(conn, %{"article" => article_params}) do
@@ -37,7 +41,7 @@ defmodule HelloPhoenix.User.ArticleController do
   end
 
   def edit(conn, %{"id" => id}) do
-    article = Repo.get!(Article, id)
+    article = Repo.get!(Article, id) |> Repo.preload(:tags)
     categorys = Repo.all(Category)
     #category = Repo.one Ecto.assoc(article, :category)
     # 过滤掉文章所属的范畴

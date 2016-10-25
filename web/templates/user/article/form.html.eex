@@ -16,10 +16,16 @@
     <%= text_input f, :title, class: "form-control" %>
     <%= error_tag f, :title %>
   </div>
+  
+  <div class="form-group">
+    <%= label f, :tags, class: "control-label" %>
+    <br>
+    <%= checkbox f, :tags %>
+  </div>
 
   <div class="form-group">
     <%= label f, :body, class: "control-label" %>
-    <%= text_input f, :body, class: "form-control" %>
+    <%= textarea f, :body, class: "form-control" %>
     <%= error_tag f, :body %>
   </div>
 

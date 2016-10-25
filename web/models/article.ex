@@ -8,6 +8,7 @@ defmodule HelloPhoenix.Article do
     belongs_to :category, HelloPhoenix.Category, foreign_key: :category_id
 
     has_many :comments, HelloPhoenix.Comment, on_delete: :delete_all
+    many_to_many :tags, HelloPhoenix.Tag, join_through: "posts_tags"
 
     timestamps()
   end

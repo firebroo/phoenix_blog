@@ -70,7 +70,7 @@ defmodule HelloPhoenix.SessionController do
               User
               |> Repo.get!(user_id)
               |> User.changeset_avatar(%{"avatar" => "/images/#{user_id}-profile#{extension}"})
-              |> Repo.update
+              |> Repo.update!
 
               conn
               |> put_flash(:info, "修改头像成功")

@@ -24,7 +24,7 @@ defmodule HelloPhoenix.ArticleController do
         |> Repo.preload([:comments])
 
         # 更新文章阅读次数
-        Article.changeset(article, %{reading: article.reading + 1}) |> Repo.update
+        Article.changeset(article, %{reading: article.reading + 1}) |> Repo.update!
 
 
         changeset = Comment.changeset(%Comment{})

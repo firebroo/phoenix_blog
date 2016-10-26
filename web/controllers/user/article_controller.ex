@@ -44,6 +44,21 @@ defmodule HelloPhoenix.User.ArticleController do
     end
   end
 
+  def create(conn, %{"article" => article_params}) do
+    changeset = Article.changeset(%Article{}, article_params)
+
+    case Repo.insert(changeset) do
+      {:ok, article} ->
+
+        conn
+        |> put_flash(:info, "Article created successfully.")
+        |> redirect(to: user_article_path(conn, :index))
+      {:error, changeset} ->
+        render(conn, "new.html", changeset: changeset)
+    end
+   end
+
+
   def show(conn, %{"id" => id}) do
     article = Repo.get!(Article, id)
     render(conn, "show.html", article: article)

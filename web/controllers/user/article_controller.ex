@@ -76,7 +76,7 @@ defmodule HelloPhoenix.User.ArticleController do
 
     case Repo.update(changeset) do
       {:ok, article} ->
-        
+        Repo.query("delete from posts_tags where article_id = #{id}")  
         changeset = article |> Repo.preload(:tags) |> Ecto.Changeset.change()
         for id <- tag_ids do
             tag = Repo.get(Tag, id)

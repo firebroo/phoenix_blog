@@ -12,21 +12,30 @@ defmodule HelloPhoenix.User.ArticleController do
   end
 
   def new(conn, _params) do
-    categorys = Repo.all(Category) |> Repo.preload(:tags)
+    categorys = Repo.all(Category)
+    tags = Repo.all(Tag)
 
     changeset = Article.changeset(%Article{})
 
     conn
+    |> assign(:tags, tags)
+    |> assign(:exist_tags, [])
     |> assign(:categorys, categorys)
     |> assign(:changeset, changeset)
     |> render("new.html")
   end
 
-  def create(conn, %{"article" => article_params}) do
+  def create(conn, %{"article" => article_params, "tags" => tag_ids}) do
     changeset = Article.changeset(%Article{}, article_params)
 
     case Repo.insert(changeset) do
-      {:ok, _article} ->
+      {:ok, article} ->
+        changeset = article |> Repo.preload(:tags) |> Ecto.Changeset.change()
+        for id <- tag_ids do
+            tag = Repo.get(Tag, id)
+            changeset |> Ecto.Changeset.put_assoc(:tags, [tag]) |> Repo.update!
+        end
+
         conn
         |> put_flash(:info, "Article created successfully.")
         |> redirect(to: user_article_path(conn, :index))
@@ -42,6 +51,8 @@ defmodule HelloPhoenix.User.ArticleController do
 
   def edit(conn, %{"id" => id}) do
     article = Repo.get!(Article, id) |> Repo.preload(:tags)
+    exist_tags = article.tags
+    tags = Repo.all(Tag)
     categorys = Repo.all(Category)
     #category = Repo.one Ecto.assoc(article, :category)
     # 过滤掉文章所属的范畴
@@ -51,18 +62,26 @@ defmodule HelloPhoenix.User.ArticleController do
     changeset = Article.changeset(article)
 
     conn
+    |> assign(:tags, tags)
+    |> assign(:exist_tags, exist_tags)
     |> assign(:article, article)
     |> assign(:changeset, changeset)
     |> assign(:categorys, categorys)
     |> render("edit.html")
   end
 
-  def update(conn, %{"id" => id, "article" => article_params}) do
+  def update(conn, %{"id" => id, "article" => article_params, "tags" => tag_ids}) do
     article = Repo.get!(Article, id)
     changeset = Article.changeset(article, article_params)
 
     case Repo.update(changeset) do
       {:ok, article} ->
+        
+        changeset = article |> Repo.preload(:tags) |> Ecto.Changeset.change()
+        for id <- tag_ids do
+            tag = Repo.get(Tag, id)
+            changeset |> Ecto.Changeset.put_assoc(:tags, [tag]) |> Repo.update!
+        end
         conn
         |> put_flash(:info, "Article updated successfully.")
         |> redirect(to: user_article_path(conn, :show, article))

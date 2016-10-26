@@ -18,9 +18,13 @@
   </div>
   
   <div class="form-group">
-    <%= label f, :tags, class: "control-label" %>
-    <br>
-    <%= checkbox f, :tags %>
+    <%= for tag <- @tags do %>
+        <%=if tag in @exist_tags do %>
+            <label><input name="tags[]" id="tags_" type="checkbox" value="<%= tag.id %>" checked="checked" "/><%= tag.name %> </label> 
+        <%= else %>
+            <label><input name="tags[]" id="tags_" type="checkbox" value="<%= tag.id %>" "/><%= tag.name %> </label> 
+        <%= end %>
+    <%= end %>
   </div>
 
   <div class="form-group">

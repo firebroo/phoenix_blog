@@ -1,6 +1,6 @@
 <h2>Edit article</h2>
 
-<%= render "form.html", changeset: @changeset, categorys: @categorys,
+<%= render "form.html", changeset: @changeset, categorys: @categorys, tags: @tags, exist_tags: @exist_tags,
                         action: user_article_path(@conn, :update, @article) %>
 
 <%= link "Back", to: user_article_path(@conn, :index) %>

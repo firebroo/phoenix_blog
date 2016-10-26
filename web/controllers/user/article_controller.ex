@@ -70,7 +70,7 @@ defmodule HelloPhoenix.User.ArticleController do
     |> render("edit.html")
   end
 
-  def update(conn, %{"id" => id, "article" => article_params, "tags" => tag_ids}) do
+   def update(conn, %{"id" => id, "article" => article_params, "tags" => tag_ids}) do
     article = Repo.get!(Article, id)
     changeset = Article.changeset(article, article_params)
 
@@ -89,6 +89,22 @@ defmodule HelloPhoenix.User.ArticleController do
         render(conn, "edit.html", article: article, changeset: changeset)
     end
   end
+
+  def update(conn, %{"id" => id, "article" => article_params}) do
+    article = Repo.get!(Article, id)
+        changeset = Article.changeset(article, article_params)
+
+        case Repo.update(changeset) do
+          {:ok, article} ->
+            Repo.query("delete from posts_tags where article_id = #{id}")  
+            conn
+            |> put_flash(:info, "Article updated successfully.")
+            |> redirect(to: user_article_path(conn, :show, article))
+          {:error, changeset} ->
+            render(conn, "edit.html", article: article, changeset: changeset)
+        end
+   end
+
 
   def delete(conn, %{"id" => id}) do
     article = Repo.get!(Article, id)

@@ -1,7 +1,7 @@
 defmodule HelloPhoenix.User.ArticleController do
   use HelloPhoenix.Web, :controller
 
-  alias HelloPhoenix.{Article, Category, Tag}
+  alias HelloPhoenix.{ArticleTag, Article, Category, Tag}
 
   def index(conn, _params) do
     articles = Article
@@ -30,17 +30,22 @@ defmodule HelloPhoenix.User.ArticleController do
 
     case Repo.insert(changeset) do
       {:ok, article} ->
-        changeset = article |> Repo.preload(:tags) |> Ecto.Changeset.change()
-        for id <- tag_ids do
-            tag = Repo.get(Tag, id)
-            changeset |> Ecto.Changeset.put_assoc(:tags, [tag]) |> Repo.update!
-        end
+        article 
+        |> Repo.preload(:tags) 
+        |> Ecto.Changeset.change()
+        |> Ecto.Changeset.put_assoc(:tags, Enum.map(tag_ids, fn id -> Repo.get(Tag, id) end)) 
+        |> Repo.update!
 
         conn
         |> put_flash(:info, "Article created successfully.")
         |> redirect(to: user_article_path(conn, :index))
       {:error, changeset} ->
-        render(conn, "new.html", changeset: changeset)
+        conn
+        |> assign(:exist_tags, [])
+        |> assign(:tags, Repo.all(Tag))
+        |> assign(:categorys, Repo.all(Category))
+        |> assign(:changeset, changeset)
+        |> render("new.html")
     end
   end
 
@@ -54,7 +59,12 @@ defmodule HelloPhoenix.User.ArticleController do
         |> put_flash(:info, "Article created successfully.")
         |> redirect(to: user_article_path(conn, :index))
       {:error, changeset} ->
-        render(conn, "new.html", changeset: changeset)
+        conn
+        |> assign(:exist_tags, [])
+        |> assign(:tags, Repo.all(Tag))
+        |> assign(:categorys, Repo.all(Category))
+        |> assign(:changeset, changeset)
+        |> render("new.html")
     end
    end
 
@@ -69,11 +79,6 @@ defmodule HelloPhoenix.User.ArticleController do
     exist_tags = article.tags
     tags = Repo.all(Tag)
     categorys = Repo.all(Category)
-    #category = Repo.one Ecto.assoc(article, :category)
-    # 过滤掉文章所属的范畴
-    #categorys = Enum.filter(categorys, fn x -> x != category end)
-    # 将当前文章所属的范畴放到第一
-    #categorys = [category | categorys]
     changeset = Article.changeset(article)
 
     conn
@@ -85,23 +90,31 @@ defmodule HelloPhoenix.User.ArticleController do
     |> render("edit.html")
   end
 
-   def update(conn, %{"id" => id, "article" => article_params, "tags" => tag_ids}) do
+  def update(conn, %{"id" => id, "article" => article_params, "tags" => tag_ids}) do
     article = Repo.get!(Article, id)
     changeset = Article.changeset(article, article_params)
 
     case Repo.update(changeset) do
       {:ok, article} ->
-        Repo.query("delete from posts_tags where article_id = #{id}")  
-        changeset = article |> Repo.preload(:tags) |> Ecto.Changeset.change()
-        for id <- tag_ids do
-            tag = Repo.get(Tag, id)
-            changeset |> Ecto.Changeset.put_assoc(:tags, [tag]) |> Repo.update!
-        end
+        from(p in ArticleTag, where: p.article_id == ^id) |> Repo.delete_all  # 删除之前所有关联
+
+        article                                                           # 重新插入所有关联
+        |> Repo.preload(:tags) 
+        |> Ecto.Changeset.change()
+        |> Ecto.Changeset.put_assoc(:tags, Enum.map(tag_ids, fn id -> Repo.get(Tag, id) end)) 
+        |> Repo.update!
+
         conn
         |> put_flash(:info, "Article updated successfully.")
         |> redirect(to: user_article_path(conn, :show, article))
       {:error, changeset} ->
-        render(conn, "edit.html", article: article, changeset: changeset)
+        conn
+        |> assign(:exist_tags, [])
+        |> assign(:article, article)
+        |> assign(:tags, Repo.all(Tag))
+        |> assign(:changeset, changeset)
+        |> assign(:categorys, Repo.all(Category))
+        |> render("edit.html")
     end
   end
 
@@ -111,12 +124,19 @@ defmodule HelloPhoenix.User.ArticleController do
 
         case Repo.update(changeset) do
           {:ok, article} ->
-            Repo.query("delete from posts_tags where article_id = #{id}")  
+            from(p in ArticleTag, where: p.article_id == ^id) |> Repo.delete_all  # 删除之前所有关联
+
             conn
             |> put_flash(:info, "Article updated successfully.")
             |> redirect(to: user_article_path(conn, :show, article))
           {:error, changeset} ->
-            render(conn, "edit.html", article: article, changeset: changeset)
+            conn
+            |> assign(:exist_tags, [])
+            |> assign(:article, article)
+            |> assign(:tags, Repo.all(Tag))
+            |> assign(:changeset, changeset)
+            |> assign(:categorys, Repo.all(Category))
+            |> render("edit.html")
         end
    end
 

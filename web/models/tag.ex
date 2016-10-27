@@ -3,7 +3,7 @@ defmodule HelloPhoenix.Tag do
 
   schema "tags" do
     field :name, :string
-    many_to_many :articles, HelloPhoenix.Article, join_through: "posts_tags"
+    many_to_many :articles, HelloPhoenix.Article, join_through: "posts_tags", on_delete: :delete_all
 
     timestamps()
   end

@@ -37,7 +37,7 @@
 
   <div class="form-group">
     <%= label f, :body, class: "control-label" %>
-    <%= text_input f, :body, class: "form-control" %>
+    <%= textarea f, :body, class: "form-control" %>
     <%= error_tag f, :body %>
   </div>
 
@@ -45,5 +45,4 @@
     <%= submit "Submit", class: "btn btn-primary" %>
   </div>
 <% end %>
-<%= link "Edit", to: category_article_path(@conn, :edit, @category_id, @article) %>
 <%= link "Back", to: category_article_path(@conn, :index, @category_id) %>

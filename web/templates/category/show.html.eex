@@ -9,5 +9,4 @@
 
 </ul>
 
-<%= link "Edit", to: category_path(@conn, :edit, @category) %>
 <%= link "Back", to: category_path(@conn, :index) %>

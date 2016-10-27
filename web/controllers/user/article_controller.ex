@@ -120,24 +120,24 @@ defmodule HelloPhoenix.User.ArticleController do
 
   def update(conn, %{"id" => id, "article" => article_params}) do
     article = Repo.get!(Article, id)
-        changeset = Article.changeset(article, article_params)
+    changeset = Article.changeset(article, article_params)
 
-        case Repo.update(changeset) do
-          {:ok, article} ->
-            from(p in ArticleTag, where: p.article_id == ^id) |> Repo.delete_all  # 删除之前所有关联
+    case Repo.update(changeset) do
+      {:ok, article} ->
+        from(p in ArticleTag, where: p.article_id == ^id) |> Repo.delete_all  # 删除之前所有关联
 
-            conn
-            |> put_flash(:info, "Article updated successfully.")
-            |> redirect(to: user_article_path(conn, :show, article))
-          {:error, changeset} ->
-            conn
-            |> assign(:exist_tags, [])
-            |> assign(:article, article)
-            |> assign(:tags, Repo.all(Tag))
-            |> assign(:changeset, changeset)
-            |> assign(:categorys, Repo.all(Category))
-            |> render("edit.html")
-        end
+        conn
+        |> put_flash(:info, "Article updated successfully.")
+        |> redirect(to: user_article_path(conn, :show, article))
+      {:error, changeset} ->
+        conn
+        |> assign(:exist_tags, [])
+        |> assign(:article, article)
+        |> assign(:tags, Repo.all(Tag))
+        |> assign(:changeset, changeset)
+        |> assign(:categorys, Repo.all(Category))
+        |> render("edit.html")
+    end
    end
 
 

@@ -8,7 +8,7 @@ defmodule HelloPhoenix.Article do
     belongs_to :category, HelloPhoenix.Category, foreign_key: :category_id
 
     has_many :comments, HelloPhoenix.Comment, on_delete: :delete_all
-    many_to_many :tags, HelloPhoenix.Tag, join_through: "posts_tags"
+    many_to_many :tags, HelloPhoenix.Tag, join_through: "posts_tags", on_delete: :delete_all
 
     timestamps()
   end
@@ -19,7 +19,7 @@ defmodule HelloPhoenix.Article do
   def changeset(struct, params \\ %{}) do
     struct
     |> cast(params, [:title, :body, :reading, :category_id])
-    |> validate_required([:title, :body])
+    |> validate_required([:title, :body, :category_id])
     |> validate_length(:title, min: 5)
     |> unique_constraint(:title)
   end

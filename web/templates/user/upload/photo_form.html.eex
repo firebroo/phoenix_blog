@@ -1,0 +1,17 @@
+<%= form_for @changeset, user_upload_path(@conn, :update_avatar), [multipart: true], fn f -> %>
+    <%= if @changeset.action do %>
+        <div class="alert alert-danger">
+          <p>Oops, something went wrong! Please check the errors below.</p>
+        </div>
+    <% end %>
+
+    <div class="form-group">
+        <p id="profile" >Profile picture</p>
+        <img id="avatar_update" class="upload" src=<%= @avatar %> >
+        <%= file_input f, :avatar, class: "file", id: "upload_button" %>
+    </div>
+
+    <div class="form-group">
+        <%= submit "Update Profile", class: "btn-sm btn btn-primary", id: "update_profile" %>
+    </div>
+<% end %>

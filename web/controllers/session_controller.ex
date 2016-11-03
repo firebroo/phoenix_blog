@@ -2,8 +2,6 @@ defmodule HelloPhoenix.SessionController do
   use HelloPhoenix.Web, :controller
 
   alias HelloPhoenix.{User}
-  @allow_file_suffix [".gif", ".jpg", ".jpeg", ".png", ".svg"]
-  import Ecto.Changeset, only: [add_error: 4]
   
   def new(conn, _params) do
     changeset = User.changeset(%User{})
@@ -46,50 +44,6 @@ defmodule HelloPhoenix.SessionController do
     |> assign(:username, get_session(conn, :username))
     |> assign(:avatar, user.avatar)
     |> render("home.html")
-  end
-
-  def new_avatar(conn, _params) do
-    changeset = User.changeset(%User{})
-
-    conn
-    |> assign(:changeset, changeset)
-    |> render("photo_form.html")
-  end
-
-  def update_avatar(conn, %{"user" => user_params}) do
-    user_id = get_session(conn, :user_id)
-    if upload = user_params["avatar"] do
-      extension = Path.extname(upload.filename)
-      path = "priv/static/images/#{user_id}-profile#{extension}"
-      
-      changeset = User.changeset_avatar(%User{})
-      case extension in @allow_file_suffix do
-        true ->
-          case File.cp(upload.path, path) do
-            :ok ->  # 上传成功, 将图片地址入库
-              User
-              |> Repo.get!(user_id)
-              |> User.changeset_avatar(%{"avatar" => "/images/#{user_id}-profile#{extension}"})
-              |> Repo.update!
-
-              conn
-              |> put_flash(:info, "修改头像成功")
-              |> redirect(to: user_session_path(conn, :home))
-            {:error, _} ->
-              changeset = changeset |> add_error(:avatar, "上传出错", message: "上传出错")
-              conn
-              |> assign(:changeset, changeset)
-              |> put_flash(:error, "修改头像失败")
-              |> render("photo_form.html")
-          end
-        false ->
-          changeset = changeset |> add_error(:avatar, "不允许的后缀", message: "不允许的后缀")
-          conn
-          |> assign(:changeset, changeset)
-          |> put_flash(:error, "修改头像失败")
-          |> render("photo_form.html")
-      end
-    end
   end
 
   def delete(conn, _params) do

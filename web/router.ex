@@ -20,12 +20,15 @@ defmodule HelloPhoenix.Router do
   scope "/users", HelloPhoenix, as: :user do
     pipe_through [:browser, :session]
 
-    get "/", SessionController, :home
-    get "/home", SessionController, :home
-    get "/upload_avatar", SessionController, :new_avatar
-    post "/upload_avatar", SessionController, :update_avatar
     get "/password/reset", UserController, :edit
     put  "/password/reset", UserController, :update
+
+    get "/", SessionController, :home
+    get "/home", SessionController, :home
+
+    get "/settings/profile", User.ProfileController, :show
+    get "/upload_avatar", User.UploadController, :new_avatar
+    post "/upload_avatar", User.UploadController, :update_avatar
     resources "/categorys", User.CategoryController
     resources "/articles", User.ArticleController
     resources "/comments", User.CommentController

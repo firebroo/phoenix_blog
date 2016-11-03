@@ -53,7 +53,7 @@ defmodule HelloPhoenix.User.ArticleController do
     changeset = Article.changeset(%Article{}, article_params)
 
     case Repo.insert(changeset) do
-      {:ok, article} ->
+      {:ok, _article} ->
 
         conn
         |> put_flash(:info, "Article created successfully.")

@@ -2,7 +2,6 @@ defmodule HelloPhoenix.UserController do
   use HelloPhoenix.Web, :controller
 
   alias HelloPhoenix.{User}
-  alias HelloPhoenix.Router.Helpers
 
   def new(conn, _params) do
     changeset = User.changeset(%User{})
@@ -16,7 +15,7 @@ defmodule HelloPhoenix.UserController do
        {:ok, _user} ->
          conn
          |> put_flash(:info, "创建用户成功,请登陆")
-         |> redirect(to: Helpers.session_path(conn, :new))
+         |> redirect(to: session_path(conn, :new))
        {:error, changeset} ->
          conn
          |> assign(:changeset, changeset)
@@ -43,11 +42,12 @@ defmodule HelloPhoenix.UserController do
       {:ok, _user} ->
         conn
         |> put_flash(:info, "密码修改成功")
-        |> redirect(to: Helpers.user_session_path(conn, :home))
+        |> redirect(to: user_profile_path(conn, :show))
       {:error, changeset} ->
+
         conn
         |> assign(:changeset, changeset)
-        |> render("edit.html")
+        |> render(:edit)
     end
   end
 end

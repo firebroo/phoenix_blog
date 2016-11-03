@@ -15,326 +15,106 @@ body {
     min-width: 960px;
 }
 
-#detail-title ul {
-    padding: 0;
-    margin: 0;
+#avatar {
+    width: 48px; 
+    height: 48px;
+    vertical-align: middle;
 }
 
-#detail-title li {
-    list-style: none;
+#avatar_update {
+    width: 70px; 
+    height: 70px;
+    vertical-align: middle;
+}
+#username {
+    font-size: 25px; 
+    margin-left: 5px;
+    vertical-align: middle;
 }
 
-#category-title ul {
-    padding: 0;
-    margin: 0;
+.manage {
+    text-align: center;
+    font-size: 30px; 
+    margin-top: 10px;
+    width: 700px;
+    height: 50px;
 }
 
-ul {
-    list-style: url('/assets/eg_arrow.gif');
+.category_manage {
+    background-color: #d9edf7;
 }
 
-a {
-    text-decoration: none
+.article_manage {
+    background-color: #f0ad4e;
 }
 
-a:hover {
-    text-decoration: none
+.tag_manage {
+    background-color: #ddd;
 }
 
-input, textarea {
-    outline: 0
+.comment_manage {
+    background-color: #dff0d8;
 }
 
-.noselect {
-    -webkit-touch-callout: none;
-    -webkit-user-select: none;
-    -khtml-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-}
-
-
-.wrp {
-    width: 960px;
-    height: 72px;
-    margin: 0 auto;
-}
-
-.clear-fix:after {
-    clear: both;
+.manage a {
     display: block;
-    visibility: hidden;
-    overflow: hidden;
-    height: 0;
-    content: '.'
 }
 
-.clear-fix {
-    zoom: 1
+.logout {
+    float: right;
+    font-size: 15px;
+    vertical-align: middle;
 }
 
-#bd {
-    margin: 0 auto;
-    width: 800px;
-    height: auto;
+a:link {
+    text-decoration:none;
+}
+a:visited {
+    text-decoration:none;
+}
+a:hover {
+    text-decoration:none;
+}
+a:active {
+    text-decoration:none;
 }
 
-.single .post {
-    padding-top: 0;
-    position: relative;
+.upload {
+    display: inline;
 }
 
-#main {
-    float: left;
-    overflow-x: hidden;
-    width: 100%
+#update_profile {
+    height: 30px;
+    width: 130px;
 }
 
-.post {
+#upload_button {
+    display: inline; 
+    margin-left: 30px;
+}
+
+.box {
     margin-top: 38px;
     border: 1px solid #e8eff1;
     background-color: #fff;
-    padding-left: 20px;
-    padding-right: 20px;
+    overflow: hidden;
 }
 
-.post-hd .title {
-    margin: 27px 0 27px;
-    font-size: 20px;
-    font-weight: bold;
-    color: #555;
-}
-
-.post-hd .title a {
-    color: #555;
-}
-
-.post-hd .title a:hover {
-    color: #3085ef
-}
-
-.date-read {
-    margin: 10px 0px;
-}
-
-.icon-date {
-    display: inline-block;
-    *display: inline;
-    *zoom: 1;
-    width: 14px;
-    height: 13px;
-    margin-right: 7px;
-    background: url(/assets/date.png) no-repeat;
-}
-
-.read, .date {
-    color: #999;
-    margin-right: 12px;
-}
-
-.post-bd {
-    word-break: break-word;
-    color: #777;
-}
-
-.post-bd p {
-    color: #777;
-    font-size: 14px;
-}
-
-.post-bd a {
-    color: #148fd4
-}
-
-.post-bd .more-link {
-    display: none;
-}
-
-.post-ft {
-    margin-top: 28px;
-    padding: 21px 0 21px 0;
-    border-top: 1px solid #f2f2f2;
-    color: #999;
-    font-size: 14px;
-}
-
-.post-ft .more {
+.ff {
     float: right;
-    color: #777;
 }
 
-.post-ft a:hover {
-    color: #3e8fff;
+#box_hr {
+    margin-bottom: 12px;
+    margin-top: 12px;
 }
 
-#detail-title {
-    display: block;
-    width: 800px;
-    margin: 0 auto;
-    margin-top: 35px;
-    background-color: #fff;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+.box .elehead {
+    margin-left: 10px;
+    margin-right: 10px;
 }
 
-#detail-title #single-nav {
+.box .ele {
     margin-left: 20px;
-    height: 58px;
-}
-
-#detail-title li {
-    display: inline-block;
-    *display: inline;
-    *zoom: 1;
-    font-size: 14px;
-    color: #555;
-    line-height: 58px;
-    padding: 0 3px;
-    vertical-align: top;
-}
-
-#detail-title li a {
-    font-size: 15px;
-    color: #999;
-    display: block;
-}
-
-#detail-title li a:hover {
-    color: #555;
-    cursor: pointer;
-}
-
-#detail-title .title-active a {
-    color: #555;
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    max-width: 500px;
-}
-
-#category {
-    display: block;
-    float: left;
-    width: 1120px;
-    height: 58px;
-    margin-top: 35px;
-    margin-left: 39px;
-    background-color: #fff;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-}
-#category-title {
-    margin-left: 20px;
-}
-
-#category-title li {
-    display: inline-block;
-    *display: inline;
-    *zoom: 1;
-    font-size: 14px;
-    color: #555;
-    line-height: 57px;
-    vertical-align: top;
-}
-
-#category-title li a {
-    font-size: 16px;
-    color: #999;
-    padding: 0 10px;
-    display: block;
-    border-bottom: 1px solid #fff;
-}
-
-#category-title li a:hover {
-    color: #555;
-    border-bottom: 2px solid #2d8aff;
-    cursor: pointer;
-}
-
-#category .current-cat a {
-    color: #555;
-    border-bottom: 2px solid #2d8aff;
-}
-
-#previous-post {
-    float: left;
-}
-
-#previous-next-nav {
-    position: relative;
-    height: 32px;
-    margin: 29px 0 45px;
-}
-
-#previous-next-nav a {
-    color: #333;
-    font-size: 15px;
-    line-height: 32px;
-    display: inline-block;
-    *display: inline;
-    *zoom: 1;
-}
-
-#previous-post a {
-    padding: 0 20px 0 30px;
-    max-width: 300px;
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-}
-
-#next-post a {
-    padding: 0 30px 0 20px;
-    max-width: 300px;
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-}
-
-#previous-next-nav a:hover {
-    background-color: #fbfdfd;
-}
-
-.previous-next-text {
-    color: #928f8f;
-    font-size: 1.2em
-}
-
-/*分页导航*/
-#pagenavi {
-    position: relative;
-    height: 32px;
-    margin: 29px 0 45px;
-}
-
-#pagenavi a, #pagenavi span {
-    height: 32px;
-    line-height: 32px;
-    display: inline-block;
-    *display: inline;
-    *zoom: 1;
-    padding: 0px 15px;
-    color: #333;
-    font-size: 15px;
-}
-
-#pagenavi a {
-    margin: 0 2px;
-}
-
-#pagenavi a:hover {
-    color: #3e8fff;
-    background-color: #fbfdfd;
-}
-
-.footer {
-    background-color: #ffffff;
-    padding: 40px 20px 60px;
-}
-
-.content {
-    color: #4a4a4a;
-}
-
-.has-text-centered {
-    text-align: center;
+    margin-right: 20px;
 }

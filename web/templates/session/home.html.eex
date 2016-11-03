@@ -1,19 +1,14 @@
-<h3>hello, <%= @username %></h3>
-<img src=<%= @avatar %> alt="20">
-<%= link "修改头像", to: user_session_path(@conn, :new_avatar) %>
-<ul>
-<li>
+<img id="avatar" src=<%= @avatar %> alt="20">
+<a href="<%= user_profile_path(@conn, :show)%>"> <span id="username"> <%= @username %></span><a>
+<div class="manage category_manage">
 <%= link "管理范畴", to: user_category_path(@conn, :index) %>
-</li>
-<li>
+</div>
+<div class="manage article_manage">
 <%= link "管理文章", to: user_article_path(@conn, :index) %>
-</li>
-<li>
+</div>
+<div class="manage comment_manage">
 <%= link "管理评论", to: user_comment_path(@conn, :index) %>
-</li>
-<li>
+</div>
+<div class="manage tag_manage">
 <%= link "管理标签", to: user_tag_path(@conn, :index) %>
-</li>
-</ul>
-<%= link "修改密码", to: user_user_path(@conn, :edit) %>
-&nbsp;&nbsp;<%= link "退出", to: session_path(@conn, :delete) %>
+</div>

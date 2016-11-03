@@ -77,14 +77,18 @@ defmodule HelloPhoenix.SessionController do
               |> redirect(to: user_session_path(conn, :home))
             {:error, _} ->
               changeset = changeset |> add_error(:avatar, "上传出错", message: "上传出错")
+              conn
+              |> assign(:changeset, changeset)
+              |> put_flash(:error, "修改头像失败")
+              |> render("photo_form.html")
           end
         false ->
           changeset = changeset |> add_error(:avatar, "不允许的后缀", message: "不允许的后缀")
+          conn
+          |> assign(:changeset, changeset)
+          |> put_flash(:error, "修改头像失败")
+          |> render("photo_form.html")
       end
-      conn
-      |> assign(:changeset, changeset)
-      |> put_flash(:error, "修改头像失败")
-      |> render("photo_form.html")
     end
   end
 

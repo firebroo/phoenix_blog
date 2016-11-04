@@ -1,18 +1,10 @@
-<h2>Show article</h2>
+<div class="title">
+    <a href="#"><%= @article.title %></a>
+</div>
 
-<ul>
-
-  <li>
-    <strong>Title:</strong>
-    <%= @article.title %>
-  </li>
-
-  <li>
-    <strong>Body:</strong>
-    <%= @article.body %>
-  </li>
-
-</ul>
+<div class="body">
+    <%= markdown @article.body %>
+</div>
 <ul>
     <%= for comment <- @article.comments do %>
         <li><%= comment.name %></li>
@@ -45,4 +37,3 @@
     <%= submit "Submit", class: "btn btn-primary" %>
   </div>
 <% end %>
-<%= link "Back", to: category_article_path(@conn, :index, @category_id) %>

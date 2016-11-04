@@ -16,8 +16,10 @@
       <header class="header">
         <nav role="navigation">
           <ul class="nav nav-pills pull-right">
-              <li><a href="<%= user_session_path(@conn, :home)%>">后台首页</a></li>
-              <li><a href="<%= session_path(@conn, :delete)%>">登出</a></li>
+              <%= if Plug.Conn.get_session(@conn, :user_id) do %>
+                  <li><a href="<%= user_session_path(@conn, :home)%>">管理</a></li>
+                  <li><a href="<%= session_path(@conn, :delete)%>">登出</a></li>
+              <% end %>
           </ul>
         </nav>
         <span class="logo"></span>

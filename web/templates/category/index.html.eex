@@ -1,20 +1,27 @@
-<div style="padding: 0px; margin: 0px;width: 100%; height: 50px; border: 1px solid #e8eff1;background-color: #fff;">
-    <ul style="margin: 0px; padding: 0px;">
+<div class="ngativa_title" >
+    <ul>
         <%= for category <- @categorys do %>
-        <li style="margin-top: 10px;font-size: 20px;display: inline-block; margin-left: 10px;"><a style="display:block;"href="<%= category_path(@conn, :show, category) %>"><%= category.name %></a></li>
+        <li><a href="<%= category_path(@conn, :show, category) %>"><%= category.name %></a></li>
         <% end %>
     </ul>
 </div>
-<%= for article <- @articles do %>
-    <div style="margin-top: 30px;width: 100%; height: 150px;padding-left: 20px; padding-right: 20px;border: 1px solid #e8eff1;background-color: #fff;">
+
+<div class="articles_body">
+    <%= for article <- @articles do %>
+        <div class="article_body">
             <h3><a href="<%= category_article_path(@conn, :show, article.category, article) %>"><%= article.title %></a></h3>
-        <hr style="margin-bottom: 50px;">
-        <span><a href="<%= category_article_path(@conn, :show, article.category, article)%>" style="float: right">>>阅读全文</a></span>
-        <span ><%= article.inserted_at %></span>
-        <span>
-            <%= for tag <- article.tags do %>
-                <a class="tag" href="<%= tag_path(@conn, :show, tag)%>"><%= tag.name %></a>
-            <% end %>
-        </span>
-    </div>
-<% end %>
+            <hr class="split">
+            <div class="foot">
+                <span class="foot_right">
+                    <a href="<%= category_article_path(@conn, :show, article.category, article)%>">>>阅读全文</a>
+                </span>
+                <span class="date"><%= article.inserted_at %></span>
+                <span>
+                    <%= for tag <- article.tags do %>
+                        <a class="tag" href="<%= tag_path(@conn, :show, tag)%>"><%= tag.name %></a>
+                    <% end %>
+                </span>
+            </div>
+        </div>
+    <% end %>
+<div>

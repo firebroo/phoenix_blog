@@ -4,7 +4,7 @@ defmodule HelloPhoenix.Repo.Migrations.CreateArticle do
   def change do
     create table(:articles) do
       add :title, :string
-      add :body, :string
+      add :body, :text
       add :category_id, references(:categorys, on_delete: :nothing)
 
       timestamps()

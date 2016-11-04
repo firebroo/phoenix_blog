@@ -45,6 +45,7 @@ defmodule HelloPhoenix.Router do
     post "/users/login", SessionController, :create
     get "/users/register", UserController, :new
     post "/users/register", UserController, :create
+    resources "/tags", TagController, only: [:show]
     resources "/categorys", CategoryController do
         resources "/articles", ArticleController do
             resources "/comments", CommentController, only: [:create]

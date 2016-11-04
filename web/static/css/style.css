@@ -118,3 +118,49 @@ a:active {
     margin-left: 20px;
     margin-right: 20px;
 }
+
+#article_body {
+    height: 400px;
+}
+
+label#select_tag {
+    margin-right: 5px;
+}
+
+label#select_tag input {
+    margin-right: 3px;
+}
+
+.tag {
+    padding: 3px 10px;
+    font-size: 12px;
+    display: inline-block;
+    margin: 4px 5px;
+    color: #52768e;
+    border: 1px solid #52768e;
+    border-radius: 20px;
+    text-align: center;
+    vertical-align: center;
+    transition: all .25s ease-in-out;
+    -webkit-transition: all .25s ease-in-out;
+}
+
+.title {
+    border: 1px solid #e8eff1;
+    background-color: #fff;
+    font-size: 20px;
+    text-align:center;
+    display: block;
+    width: 100%;
+    height: 50px;
+    padding-top: 10px;
+}
+
+.body {
+    margin-top: 38px;
+    border: 1px solid #e8eff1;
+    background-color: #fff;
+    padding-left: 20px;
+    padding-right: 20px;
+    overflow: hidden;
+}

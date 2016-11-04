@@ -26,6 +26,14 @@ form.link, form.button {
 .header {
   border-bottom: 1px solid #e5e5e5;
 }
+
+/* Everything but the jumbotron gets side spacing for mobile first views */
+.header,
+.marketing {
+  padding-right: 15px;
+  padding-left: 15px;
+}
+
 .logo {
   width: 519px;
   height: 71px;
@@ -35,17 +43,10 @@ form.link, form.button {
   background-size: 519px 71px;
 }
 
-/* Everything but the jumbotron gets side spacing for mobile first views */
-.header,
-.marketing {
-  padding-right: 15px;
-  padding-left: 15px;
-}
-
 /* Customize container */
-@media (min-width: 768px) {
+@media (min-width: 800px) {
   .container {
-    max-width: 730px;
+    max-width: 800px;
   }
 }
 .container-narrow > hr {

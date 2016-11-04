@@ -13,27 +13,27 @@
 
   <div class="form-group">
     <%= label f, :title, class: "control-label" %>
-    <%= text_input f, :title, class: "form-control" %>
+    <%= text_input f, :title, class: "form-control",placeholder: "文章标题" %>
     <%= error_tag f, :title %>
   </div>
   
   <div class="form-group">
     <%= for tag <- @tags do %>
         <%=if tag in @exist_tags do %>
-            <label><input name="tags[]" id="tags_" type="checkbox" value="<%= tag.id %>" checked="checked" "/><%= tag.name %> </label> 
+            <label id="select_tag"><input name="tags[]" id="tags_" type="checkbox" value="<%= tag.id %>" checked="checked" "/><%= tag.name %> </label> 
         <%= else %>
-            <label><input name="tags[]" id="tags_" type="checkbox" value="<%= tag.id %>" "/><%= tag.name %> </label> 
+            <label id="select_tag"><input name="tags[]" id="tags_" type="checkbox" value="<%= tag.id %>" "/><%= tag.name %> </label> 
         <%= end %>
     <%= end %>
   </div>
 
   <div class="form-group">
     <%= label f, :body, class: "control-label" %>
-    <%= textarea f, :body, class: "form-control" %>
+    <%= textarea f, :body, class: "form-control", id: "article_body" %>
     <%= error_tag f, :body %>
   </div>
 
   <div class="form-group">
-    <%= submit "Submit", class: "btn btn-primary" %>
+    <%= submit "Submit", class: "btn-sm btn btn-primary" %>
   </div>
 <% end %>

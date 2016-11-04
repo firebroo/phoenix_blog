@@ -15,7 +15,6 @@
 <%= for article <- @articles do %>
     <tr>
       <td><%= article.title %></td>
-      <td><%= article.body %></td>
       <td><%= article.reading %></td>
       <td><%= category_name(article) %></td>
 

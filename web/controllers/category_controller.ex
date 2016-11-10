@@ -38,15 +38,15 @@ defmodule HelloPhoenix.CategoryController do
 
   def show(conn, params) do
     conn = common(conn, params)
-    case Map.fetch(params, "id") do
+    pagination = case Map.fetch(params, "id") do
       {:ok, id} ->
-        pagination = Article
+        Article
         |> where(category_id: ^id)
         |> order_by(desc: :inserted_at)
         |> preload([:category, :tags, :comments])
         |> Repo.paginate(params)
       {:error} ->
-        pagination = Article
+        Article
         |> order_by(desc: :inserted_at)
         |> preload([:category, :tags, :comments])
         |> Repo.paginate(params)

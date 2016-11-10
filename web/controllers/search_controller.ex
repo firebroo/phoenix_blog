@@ -25,7 +25,7 @@ defmodule HelloPhoenix.SearchController do
   end
 
   def index(conn, params) do
-    case Map.fetch(params, "q") do
+    pagenations = case Map.fetch(params, "q") do
       {:ok, query} ->
         query = "%" <> query <> "%"
         conn = common(conn, params)
@@ -34,12 +34,12 @@ defmodule HelloPhoenix.SearchController do
                    |> preload([:comments, :category, :tags]) 
                    |> Repo.paginate(params)
         if articles.entries == [] do
-            pagenations = []
+            []
         else
-            pagenations = articles
+            articles
         end
       {:error} ->
-        pagenations = []
+        []
     end
     conn
     |> assign(:pagenations, pagenations)

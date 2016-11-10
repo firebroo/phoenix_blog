@@ -1,6 +1,16 @@
+<div id="content-wrap">
+    <div class="container">
+        </div>
+            <div class="container">
+                    <div class="row">
+                                <div class="col-md-8 col-md-offset-2">
 <h2>注册用户</h2>
 已有账户? 点此<%= link "登陆", to: session_path(@conn, :new) %>
 
 <%= render "form.html", changeset: @changeset,
                         action: user_path(@conn, :create) %>
+</div>
+</div>
+</div>
+</div>
 

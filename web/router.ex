@@ -38,7 +38,7 @@ defmodule HelloPhoenix.Router do
   scope "/", HelloPhoenix do
     pipe_through :browser # Use the default browser stack
 
-    get "/", CategoryController, :index
+    get "achieve", AchieveController, :index
     get "/users/index", SessionController, :index
     get "/users/login", SessionController, :new
     get "/users/logout", SessionController, :delete
@@ -51,6 +51,7 @@ defmodule HelloPhoenix.Router do
             resources "/comments", CommentController, only: [:create]
         end
     end
+    get "/", CategoryController, :index
   end
 
 # scope "/admin", HelloPhoenix.Admin, as: :admin do

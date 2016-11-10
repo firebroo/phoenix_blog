@@ -1,0 +1,23 @@
+<div id="content-wrap">
+    <div class="container">
+    </div>
+    <div class="container">
+    <div class="posts-count">共<%= Enum.count @articles %>篇文章</div>
+    <div id="cd-timeline" class="cd-container" style="margin: 0 0">
+        <%= for article <- @articles do %>
+                <div class="cd-timeline-block">
+                    <div class="cd-timeline-img cd-picture">
+                </div>
+                <div class="cd-timeline-content">
+                    <a href="<%= category_article_path(@conn, :show, article.category, article)%>">
+                        <div class="title"><%= article.title %></div>
+                    </a>
+                    <span class="cd-date"><%= article.inserted_at.year %>-<%= article.inserted_at.month %>-<%= article.inserted_at.day %></span>
+                </div>
+            </div>
+        <% end %>
+    </div>
+    <div class="dot">
+    </div>
+    </div>
+</div>

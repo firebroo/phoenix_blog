@@ -1,3 +1,9 @@
+<div id="content-wrap">
+    <div class="container">
+        </div>
+            <div class="container">
+                    <div class="row">
+                                <div class="col-md-8 col-md-offset-2">
 <img id="avatar" src=<%= @avatar %> alt="20">
 <a href="<%= user_profile_path(@conn, :show)%>"> <span id="username"> <%= @username %></span><a>
 <div class="manage category_manage">
@@ -12,3 +18,8 @@
 <div class="manage tag_manage">
 <%= link "管理标签", to: user_tag_path(@conn, :index) %>
 </div>
+</div>
+</div>
+</div>
+</div>
+

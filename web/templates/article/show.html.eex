@@ -1,39 +1,87 @@
-<div class="title">
-    <a href="#"><%= @article.title %></a>
-</div>
-
-<div class="body">
-    <%= markdown @article.body %>
-</div>
-<ul>
-    <%= for comment <- @article.comments do %>
-        <li><%= comment.name %></li>
-        <li><%= comment.body %></li>
-        <br>
-    <% end %>
-</ul>
-<%= form_for @changeset, category_article_comment_path(@conn, :create, @category_id, @article), fn f -> %>
-  <%= if @changeset.action do %>
-    <div class="alert alert-danger">
-      <p>Oops, something went wrong! Please check the errors below.</p>
+<div class="container">
+    <div id="post-detail-wrap" class="row">
+        <div class="col-md-8 col-md-offset-2 col-sm-12 phone-no-padding">
+            <div class="post-detail">
+                <div class="center-block">
+                    <div class="post-detail-title"><%= @article.title %></div>
+                    <div class="post-meta">
+                        <span class="post-time">
+                            <i class="fa fa-calendar-o"></i>
+                            <time datetime="<%= @article.inserted_at %>">
+                                <%= @article.inserted_at %>
+                            </time>
+                        </span>
+                        <span class="post-category">
+                            &nbsp;|&nbsp;
+                            <i class="fa fa-folder-o"></i>
+                            <a href="<%= category_path(@conn, :show, @article.category)%>">
+                                算法
+                            </a>
+                        </span>
+                        <span class="post-comments-count">
+                            &nbsp;|&nbsp;
+                            <i class="fa fa-comments-o fa-fw" aria-hidden="true"></i>
+                            <span><%= Enum.count @article.comments %></span>
+                        </span>
+                        <span>
+                            &nbsp;|&nbsp;
+                            <i class="fa fa-eye"></i>
+                            <span><%= @article.reading %></span>
+                        </span>
+                    </div>
+                </div>
+                <br>
+                <div class="post-detail-content">
+                    <%= markdown @article.body %>
+                </div>
+                <div class="tag-list">
+                    <i class="fa fa-tags"></i>
+                    <%= for tag <- @article.tags do %>
+                        <a class="tag" href="<%= tag_path(@conn, :show, tag.name) %>"><%= tag.name %></a>
+                    <% end %>
+                </div>
+                <div class="alone-divider"></div>
+                <div class="creative-commons">
+                    <i class="fa fa-fw fa-creative-commons"></i>自由转载-非商用-非衍生-保持署名（<a
+                       href="https://creativecommons.org/licenses/by-nc-nd/3.0/deed.zh">创意共享3.0许可证</a>）
+                </div>
+            </div>
+        </div>
     </div>
-  <% end %>
 
-  <input type="hidden" name="category_id" value="<%= @category_id %>" />
+    <div class="row mt-30">
+        <div id="comment-wrap" class="col-md-8 col-md-offset-2 col-sm-12 phone-no-padding">
+            <div class="comment">
+                <div class="comment-header">
+                    <h6 id="comments_count"><i class="fa fa-comments fa-fw"></i>评论</h6>
+                </div>
+                <div class="comment-body">
+                    <div id="comments-container"
 
-  <div class="form-group">
-    <%= label f, :name, class: "control-label" %>
-    <%= text_input f, :name, class: "form-control" %>
-    <%= error_tag f, :name %>
-  </div>
+                         data-api-url="https://lufficc.com/commentable/10/comments?commentable_type=App%5CPost&amp;redirect=https%3A%2F%2Flufficc.com%2Fblog%2Fheap-sort-and-max-priority-queue">
+                    </div>
 
-  <div class="form-group">
-    <%= label f, :body, class: "control-label" %>
-    <%= textarea f, :body, class: "form-control" %>
-    <%= error_tag f, :body %>
-  </div>
+                    <%= form_for @changeset, category_article_comment_path(@conn, :create, @category_id, @article), fn f -> %>
 
-  <div class="form-group">
-    <%= submit "Submit", class: "btn btn-primary" %>
-  </div>
-<% end %>
+                      <input type="hidden" name="category_id" value="<%= @category_id %>" />
+
+                      <div class="form-group">
+                        <%= label f, :name, class: "control-label" %>
+                        <%= text_input f, :name, class: "form-control" %>
+                      </div>
+
+                      <div class="form-group">
+                        <%= label f, :body, class: "control-label" %>
+                        <%= textarea f, :body, class: "form-control" %>
+                      </div>
+                      <div class="form-group">
+                        <input type="submit" id="comment-submit" class="btn btn-primary" value="回复"/>
+                       </div>
+
+                    <% end %>
+
+                </div>
+            </div>                
+            </div>
+    </div>
+</div>

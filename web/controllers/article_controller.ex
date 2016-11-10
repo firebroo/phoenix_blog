@@ -21,7 +21,7 @@ defmodule HelloPhoenix.ArticleController do
     def show(conn, %{"category_id" => category_id, "id" => id}) do
         article = Article
         |> Repo.get!(id)
-        |> Repo.preload([:comments])
+        |> Repo.preload([:category, :comments, :tags])
 
         # 更新文章阅读次数
         Article.changeset(article, %{reading: article.reading + 1}) |> Repo.update!

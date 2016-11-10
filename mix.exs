@@ -39,6 +39,9 @@ defmodule HelloPhoenix.Mixfile do
      {:gettext, "~> 0.11"},
      {:earmark, "~> 1.0.3"},
      {:comeonin, "~> 2.6"},
+     {:scrivener, "~> 2.0"},
+     {:scrivener_ecto, "~> 1.0"},
+     {:scrivener_html, "~> 1.1"},
      {:cowboy, "~> 1.0"}]
   end
 

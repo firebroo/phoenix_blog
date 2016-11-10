@@ -1,6 +1,17 @@
-<h2>登陆</h2> 
-还没有账户? 点击<%= link "注册", to: user_path(@conn, :new) %>
+<div id="content-wrap">
+    <div class="container">
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <h2>登陆</h2> 
+                还没有账户? 点击<%= link "注册", to: user_path(@conn, :new) %>
 
-<%= render "form.html", changeset: @changeset,
-                        action: session_path(@conn, :create) %>
+                <%= render "form.html", changeset: @changeset,
+                                        action: session_path(@conn, :create) %>
+</div>
+</div>
+</div>
+</div>
+
 

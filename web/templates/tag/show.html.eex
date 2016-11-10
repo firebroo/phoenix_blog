@@ -23,7 +23,7 @@
                             </span>
                             <span class="post-category">&nbsp;|&nbsp;
                                 <i class="fa fa-folder-o"></i>
-                                <a href="<%= category_path(@conn, :show, article.category) %>">
+                                <a href="<%= category_path(@conn, :show, article.category)%>">
                                     <%= article.category.name %>
                                 </a>
                             </span>
@@ -55,7 +55,7 @@
                 </article>
                 <% end %>
 
-                <%= pagination_links @conn, @pagination, path: &category_path/3, action: :index %>
+                <%= pagination_links @conn, @pagination, [Map.get(@conn.params, "id")], path: &tag_path/4, action: :show %>
 
             </div>
 

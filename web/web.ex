@@ -52,6 +52,7 @@ defmodule HelloPhoenix.Web do
       import HelloPhoenix.Router.Helpers
       import HelloPhoenix.ErrorHelpers
       import HelloPhoenix.Gettext
+      import Scrivener.HTML
     end
   end
 

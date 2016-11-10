@@ -39,6 +39,10 @@ defmodule HelloPhoenix.Router do
     pipe_through :browser # Use the default browser stack
 
     get "achieve", AchieveController, :index
+    get "projects", ProjectController, :index
+    get "search", SearchController, :index
+    get "about", AboutController, :index
+
     get "/users/index", SessionController, :index
     get "/users/login", SessionController, :new
     get "/users/logout", SessionController, :delete

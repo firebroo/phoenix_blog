@@ -1,0 +1,27 @@
+<div id="content-wrap">
+    <div class="container">
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2 col-sm-12 phone-no-padding">
+                <ol class="breadcrumb">
+                    <li><a href="/">博客</a></li>
+                    <li class="active">关于</li>
+                </ol>
+                <div class="post-detail">
+                    <div class="center-block">
+                        <div class="post-detail-title">关于</div>
+                    </div>
+                    <div class="post-detail-content">
+                        <h4>编程技能</h4>
+                            <blockquote>
+                                <p>C,Ruby,Python,Java,Elixir,Haskell,PHP,Reverse Engineering</p>
+                            </blockquote>
+                        <h4>工作</h4>
+                            <p>信息安全从业者。</p>
+                  </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

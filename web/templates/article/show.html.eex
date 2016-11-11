@@ -55,33 +55,52 @@
                 <div class="comment-header">
                     <h6 id="comments_count"><i class="fa fa-comments fa-fw"></i>评论</h6>
                 </div>
-                <div class="comment-body">
-                    <div id="comments-container"
-
-                         data-api-url="https://lufficc.com/commentable/10/comments?commentable_type=App%5CPost&amp;redirect=https%3A%2F%2Flufficc.com%2Fblog%2Fheap-sort-and-max-priority-queue">
+                <%= for comment <- @article.comments do %>
+                    <div class="comment-wrap">
+                        <div class="pull-left">
+                            <a name="comment1" href="#xhh110">
+                                <img width="40px" height="40px" class="img-circle" src="https://cdn.v2ex.co/avatar/eee9/bf07/136499_large.png?m=1442026544">
+                            </a>
+                        </div>
+                        <div class="comment-info">
+                            <div class="comment-head">
+                                <span class="name">
+                                    <a href="#xhh110"><%= comment.name %></a>
+                                </span>
+                                <span class="comment-operation pull-right">
+                                    <a href="javascript:void (0);" onclick="replySomeone('xhh110')"><i class="fa fa-reply fa-fw"></i></a>
+                                </span>
+                            </div>
+                            <div class="comment-time">
+                                <span><%= comment.inserted_at %></span>
+                            </div>
+                            <div class="markdown-content">
+                                <p><%= comment.body %></p>
+                            </div>
+                        </div>
                     </div>
+                <% end %>
+                <%= form_for @changeset, category_article_comment_path(@conn, :create, @category_id, @article), fn f -> %>
 
-                    <%= form_for @changeset, category_article_comment_path(@conn, :create, @category_id, @article), fn f -> %>
+                  <input type="hidden" name="category_id" value="<%= @category_id %>" />
 
-                      <input type="hidden" name="category_id" value="<%= @category_id %>" />
+                  <div class="form-group">
+                    <%= label f, :name, class: "control-label" %>
+                    <%= text_input f, :name, class: "form-control" %>
+                  </div>
 
-                      <div class="form-group">
-                        <%= label f, :name, class: "control-label" %>
-                        <%= text_input f, :name, class: "form-control" %>
-                      </div>
+                  <div class="form-group">
+                    <%= label f, :body, class: "control-label" %>
+                    <%= textarea f, :body, class: "form-control" %>
+                  </div>
+                  <div class="form-group">
+                    <input type="submit" id="comment-submit" class="btn btn-primary" value="回复"/>
+                   </div>
 
-                      <div class="form-group">
-                        <%= label f, :body, class: "control-label" %>
-                        <%= textarea f, :body, class: "form-control" %>
-                      </div>
-                      <div class="form-group">
-                        <input type="submit" id="comment-submit" class="btn btn-primary" value="回复"/>
-                       </div>
-
-                    <% end %>
+                <% end %>
 
                 </div>
             </div>                
-            </div>
+        </div>
     </div>
 </div>

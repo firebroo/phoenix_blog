@@ -9,6 +9,13 @@ defmodule HelloPhoenix.Router do
     plug :put_secure_browser_headers
   end
 
+#  pipeline :browser_no_csrf do
+#    plug :accepts, ["html"]
+#    plug :fetch_session
+#    plug :fetch_flash
+#    plug :put_secure_browser_headers
+#  end
+
   pipeline :session do
     plug HelloPhoenix.Plugs.Session
   end
@@ -58,6 +65,9 @@ defmodule HelloPhoenix.Router do
     get "/", CategoryController, :index
   end
 
+#  scope "/", HelloPhoenix do
+#    pipe_through :browser_no_csrf # Use the default browser stack
+#  end
 # scope "/admin", HelloPhoenix.Admin, as: :admin do
 #   pipe_through :browser
 #    

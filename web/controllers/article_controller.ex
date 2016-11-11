@@ -21,7 +21,12 @@ defmodule HelloPhoenix.ArticleController do
     def show(conn, %{"category_id" => category_id, "id" => id}) do
         article = Article
         |> Repo.get!(id)
-        |> Repo.preload([:category, :comments, :tags])
+        |> Repo.preload([:category, :tags])
+
+        comments = Comment
+        |> where(article_id: ^id)
+        |> order_by(asc: :inserted_at)
+        |> Repo.all
 
         # 更新文章阅读次数
         Article.changeset(article, %{reading: article.reading + 1}) |> Repo.update!
@@ -31,6 +36,7 @@ defmodule HelloPhoenix.ArticleController do
 
         conn
         |> assign(:article, article)
+        |> assign(:comments, comments)
         |> assign(:changeset, changeset)
         |> assign(:category_id, category_id)
         |> render("show.html")

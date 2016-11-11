@@ -21,7 +21,7 @@
                         <span class="post-comments-count">
                             &nbsp;|&nbsp;
                             <i class="fa fa-comments-o fa-fw" aria-hidden="true"></i>
-                            <span><%= Enum.count @article.comments %></span>
+                            <span><%= Enum.count @comments %></span>
                         </span>
                         <span>
                             &nbsp;|&nbsp;
@@ -55,7 +55,7 @@
                 <div class="comment-header">
                     <h6 id="comments_count"><i class="fa fa-comments fa-fw"></i>评论</h6>
                 </div>
-                <%= for comment <- @article.comments do %>
+                <%= for comment <- @comments do %>
                     <div class="comment-wrap">
                         <div class="pull-left">
                             <a name="comment1" href="#xhh110">
@@ -68,7 +68,7 @@
                                     <a href="#xhh110"><%= comment.name %></a>
                                 </span>
                                 <span class="comment-operation pull-right">
-                                    <a href="javascript:void (0);" onclick="replySomeone('xhh110')"><i class="fa fa-reply fa-fw"></i></a>
+                                    <a href="javascript:void (0);" onclick="replySomeone('<%= comment.name %>')"><i class="fa fa-reply fa-fw"></i></a>
                                 </span>
                             </div>
                             <div class="comment-time">
@@ -91,7 +91,7 @@
 
                   <div class="form-group">
                     <%= label f, :body, class: "control-label" %>
-                    <%= textarea f, :body, class: "form-control", placeholder: "至少输入5个字符" %>
+                    <%= textarea f, :body, class: "form-control", placeholder: "至少输入5个字符", id: "comment-content" %>
                   </div>
                   <div class="form-group">
                     <input type="submit" id="comment-submit" class="btn btn-primary" value="回复"/>

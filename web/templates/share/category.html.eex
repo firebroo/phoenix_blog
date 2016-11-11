@@ -1,0 +1,11 @@
+<div class="widget widget-default">
+    <div class="widget-header"><h6><i class="fa fa-folder fa-fw"></i>分类</h6></div>
+    <ul class="widget-body list-group">
+        <%= for category <- @categorys do %>
+        <a title="<%= category.name %>" href="<%= category_path(@conn, :show, category) %>" class="list-group-item">
+            <%= category.name %> 
+            <span class="badge"><%= Enum.count category.articles%></span>
+        </a>
+        <% end %>
+    </ul>
+</div>

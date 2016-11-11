@@ -4,140 +4,27 @@
     <div class="container">
         <div class="row">
             <div class="col-md-8">
-
-                <%= for article <- @pagination do %>
-                <article class="post">
-                    <!-- post header -->
-                    <div class="post-header">
-                        <h1 class="post-title">
-                            <a title="<%= article.title %>" href="<%= category_article_path(@conn, :show, article.category, article) %>">
-                                <%= article.title%>
-                            </a>
-                        </h1>
-                        <div class="post-meta">
-                            <span class="post-time">
-                                <i class="fa fa-calendar-o"></i>
-                                <time datetime="<%= article.inserted_at %>">
-                                    <%= article.inserted_at %>
-                                </time>
-                            </span>
-                            <span class="post-category">&nbsp;|&nbsp;
-                                <i class="fa fa-folder-o"></i>
-                                <a href="<%= category_path(@conn, :show, article.category)%>">
-                                    <%= article.category.name %>
-                                </a>
-                            </span>
-                            <span class="post-comments-count">&nbsp;|&nbsp;
-                                <i class="fa fa-comments-o fa-fw" aria-hidden="true"></i>
-                                <span><%= Enum.count article.comments%></span>
-                            </span>
-                        </div>
-                    </div>
-                    <!-- post content -->
-                    <div class="post-description">
-                        <p class="markdown-target" data-markdown="<%= article.title %>">
-                        </p>
-                    </div>
-                    <!-- read more -->
-                    <div class="post-permalink">
-                        <a title="阅读全文" href="<%= category_article_path(@conn, :show, article.category, article) %>" 
-                        class="btn btn-more">阅读全文</a>
-                    </div>
-                    <!-- post footer -->
-                    <div class="post-footer clearfix">
-                        <div class="pull-left tag-list">
-                            <i class="fa fa-tags"></i>
-                            <%= for tag <- article.tags do %>
-                            <a  class="tag" href="<%= tag_path(@conn, :show, tag.name) %>"><%= tag.name %></a>
-                            <% end %>
-                        </div>
-                    </div>
-                </article>
-                <% end %>
-
+                <%= render HelloPhoenix.ShareView, "article_body.html", pagination: @pagination, conn: @conn %>
                 <%= pagination_links @conn, @pagination, [Map.get(@conn.params, "id")], path: &tag_path/4, action: :show %>
-
             </div>
 
             <div class="col-md-4">
                 <div class="slide">
-                    
-                    <!-- 个人信息-->
-                    <div class="widget widget-user" style="overflow: hidden">
-                        <div class="widget-user-header" style="background-color: #52768e;">
-                            <h3 class="widget-user-username">firebroo</h3>
-                            <h5 class="widget-user-desc">瘦小的信息安全从业者</h5>
-                        </div>
-                        <div class="widget-user-image">
-                            <img class="img-circle" src="https://cdn.v2ex.co/avatar/eee9/bf07/136499_large.png?m=1442026544" 
-                            alt="User Avatar">
-                        </div>
-                        <div class="widget-user-footer">
-                            <div class="row">
-                                <div class="col-xs-3 border-right center-block">
-                                    <div class="description-block">
-                                        <a href="mailto: admin@firebroo.com" title="Email" class="description-header" target="_blank">
-                                        <i class="fa fa-envelope fa-fw fa-lg" aria-hidden="true"></i></a>
-                                    </div>
-                                </div>
-                                <div class="col-xs-3 border-right center-block">
-                                    <div class="description-block">
-                                        <a href="https://twitter.com/firebroo1" title="Twitter" class="description-header" target="_blank">
-                                        <i class="fa fa-twitter fa-fw fa-lg" aria-hidden="true"></i></a>
-                                    </div>
-                                </div>
-                                <div class="col-xs-3 border-right center-block">
-                                    <div class="description-block">
-                                        <a id="Haskell-monad" href="#Haskell-monad" title="Weixin" class="description-header" target="_blank">
-                                        <i class="fa  fa-weixin  fa-fw fa-lg" aria-hidden="true"></i></a>
-                                    </div>
-                                </div>
-                                <div class="col-xs-3 border-right center-block">
-                                    <div class="description-block">
-                                        <a href="https://github.com/firebroo" title="Github" class="description-header" target="_black">
-                                        <i class="fa fa-github fa-fw fa-lg" aria-hidden="true"></i></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-
-                    <!-- 热门文章 -->
-                    <div class="widget widget-default">
-                        <div class="widget-header"><h6><i class="fa fa-fire fa-fw"></i>热门文章</h6></div>
-                        <ul class="widget-body hot-posts">
-                            <%= for article <- @hot_articles do %>
-                            <a class="list-group-item" title="<%= article.title %>" 
-                            href="<%= category_article_path(@conn, :show, article.category, article)%>">
-                                <span class="badge"><%= article.reading %></span>
-                                <%= article.title %>
-                                <span class="clearfix"></span>
-                            </a>
-                            <% end %>
-                        </ul>
-                    </div>
-
+                    <%= render HelloPhoenix.ShareView, "user_info.html" %>
+                    <%= render HelloPhoenix.ShareView, "hot_articles.html", hot_articles: @hot_articles, conn: @conn %>
                     <!-- 范畴分类 -->
-                    <div class="widget widget-default">
-                        <div class="widget-header"><h6><i class="fa fa-folder fa-fw"></i>分类</h6></div>
-                        <ul class="widget-body list-group">
-                            <%= for category <- @categorys do %>
-                            <a title="<%= category.name %>" href="<%= category_path(@conn, :show, category) %>" class="list-group-item">
-                                <%= category.name %> 
-                                <span class="badge"><%= Enum.count category.articles%></span>
-                            </a>
-                            <% end %>
-                        </ul>
-                    </div>
-
+                    <%= render HelloPhoenix.ShareView, "category.html", categorys: @categorys, conn: @conn %>
                     <!-- 标签分类-->
                     <div class="widget widget-default">
                         <div class="widget-header"><h6><i class="fa fa-tags fa-fw"></i>标签</h6></div>
                         <ul class="widget-body">
                             <div class="tag-list">
                                 <%= for tag <- @tags do %>
-                                <a  title="<%= tag.name %>" href="<%= tag_path(@conn, :show, tag.name)%>" class="tag">
+                                    <%= if tag.name == Map.get(@conn.params, "id") do %>
+                                        <a  title="<%= tag.name %>" href="<%= tag_path(@conn, :show, tag.name)%>" class="tag tag-active">
+                                    <%= else %> 
+                                        <a  title="<%= tag.name %>" href="<%= tag_path(@conn, :show, tag.name)%>" class="tag">
+                                    <% end %>
                                     <%= tag.name %>
                                     <span class="badge"><%= Enum.count tag.articles%></span>
                                 </a>
@@ -145,7 +32,6 @@
                             </div>
                         </ul>
                     </div>                
-
                 </div>
             </div>
         </div>

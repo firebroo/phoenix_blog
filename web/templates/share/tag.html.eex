@@ -1,0 +1,13 @@
+<div class="widget widget-default">
+    <div class="widget-header"><h6><i class="fa fa-tags fa-fw"></i>标签</h6></div>
+    <ul class="widget-body">
+        <div class="tag-list">
+            <%= for tag <- @tags do %>
+            <a  title="<%= tag.name %>" href="<%= tag_path(@conn, :show, tag.name)%>" class="tag">
+                <%= tag.name %>
+                <span class="badge"><%= Enum.count tag.articles%></span>
+            </a>
+            <% end %>
+        </div>
+    </ul>
+</div>                

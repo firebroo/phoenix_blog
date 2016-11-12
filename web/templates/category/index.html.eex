@@ -18,6 +18,8 @@
                     <%= render HelloPhoenix.ShareView, "category.html", categorys: @categorys, conn: @conn %>
                     <!-- 标签分类-->
                     <%= render HelloPhoenix.ShareView, "tag.html", tags: @tags, conn: @conn %>
+                    <!-- 友情链接-->
+                    <%= render HelloPhoenix.ShareView, "friend_ship.html" %>
                 </div>
             </div>
         </div>

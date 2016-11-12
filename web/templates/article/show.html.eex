@@ -55,6 +55,7 @@
                 <div class="comment-header">
                     <h6 id="comments_count"><i class="fa fa-comments fa-fw"></i>评论</h6>
                 </div>
+                <div class="comment-body">
                 <%= for comment <- @comments do %>
                     <div class="comment-wrap">
                         <div class="pull-left">
@@ -80,6 +81,7 @@
                         </div>
                     </div>
                 <% end %>
+                </div>
                 <%= form_for @changeset, category_article_comment_path(@conn, :create, @category_id, @article), fn f -> %>
                   <input type="hidden" name="category_id" value="<%= @category_id %>" />
                   <div class="form-group">

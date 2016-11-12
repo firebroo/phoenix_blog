@@ -1,0 +1,30 @@
+<html>
+  <head>
+    <title>404 Not Found Error</title>
+    <link href="<%= static_path(@conn, "/css/app.css") %>" rel="stylesheet"></link>
+  </head>
+  <body>
+    <nav class="navbar navbar-inverse">
+      <div class="container">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="/">firebroo's blog</a>
+        </div>
+      </div>
+    </nav>
+
+    <div class="container">
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <h1> 您查询的页面不存在。 三秒后跳转主页</h1>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      // set delay only to 2 seconds because it takes time to fetch index page
+      window.setTimeout(function(){
+        window.location.href = "/";
+      }, 2000);
+    </script>
+  </body>
+</html>

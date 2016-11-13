@@ -9,7 +9,7 @@
                     <div class="cd-timeline-img cd-picture">
                 </div>
                 <div class="cd-timeline-content">
-                    <a href="<%= category_article_path(@conn, :show, article.category, article.hash_id)%>">
+                    <a href="<%= category_article_path(@conn, :show, article.category.hash_id, article.hash_id)%>">
                         <div class="title"><%= article.title %></div>
                     </a>
                     <span class="cd-date"><%= article.inserted_at.year %>-<%= article.inserted_at.month %>-<%= article.inserted_at.day %></span>

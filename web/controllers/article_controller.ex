@@ -20,25 +20,32 @@ defmodule HelloPhoenix.ArticleController do
 
     def show(conn, %{"category_id" => category_id, "id" => id}) do
         article = Article
-        |> Repo.get!(id)
-        |> Repo.preload([:category, :tags])
+        |> where(hash_id: ^id)
+        |> Repo.one!
+        |> Repo.preload([:category, :tags, :comments])
+        
+        if category_id != article.category.hash_id do
+            conn 
+            |> put_layout(false)
+            |> render HelloPhoenix.ErrorView, "404.html" 
+        else
+            comments = Comment
+            |> where(article_id: ^article.id)
+            |> order_by(asc: :inserted_at)
+            |> Repo.all
 
-        comments = Comment
-        |> where(article_id: ^id)
-        |> order_by(asc: :inserted_at)
-        |> Repo.all
-
-        # 更新文章阅读次数
-        Article.changeset(article, %{reading: article.reading + 1}) |> Repo.update!
+            # 更新文章阅读次数
+            Article.changeset(article, %{reading: article.reading + 1}) |> Repo.update!
 
 
-        changeset = Comment.changeset(%Comment{})
+            changeset = Comment.changeset(%Comment{})
 
-        conn
-        |> assign(:article, article)
-        |> assign(:comments, comments)
-        |> assign(:changeset, changeset)
-        |> assign(:category_id, category_id)
-        |> render("show.html")
+            conn
+            |> assign(:article, article)
+            |> assign(:comments, comments)
+            |> assign(:changeset, changeset)
+            |> assign(:category_id, category_id)
+            |> render("show.html")
+        end
     end
 end

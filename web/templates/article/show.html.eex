@@ -14,7 +14,7 @@
                         <span class="post-category">
                             &nbsp;|&nbsp;
                             <i class="fa fa-folder-o"></i>
-                            <a href="<%= category_path(@conn, :show, @article.category)%>">
+                            <a href="<%= category_path(@conn, :show, @article.category.hash_id)%>">
                                 算法
                             </a>
                         </span>
@@ -82,7 +82,7 @@
                     </div>
                 <% end %>
                 </div>
-                <%= form_for @changeset, category_article_comment_path(@conn, :create, @category_id, @article), fn f -> %>
+                <%= form_for @changeset, category_article_comment_path(@conn, :create, @category_id, @article.hash_id), fn f -> %>
                   <input type="hidden" name="category_id" value="<%= @category_id %>" />
                   <div class="form-group">
                     <%= label f, :username, class: "control-label" %>

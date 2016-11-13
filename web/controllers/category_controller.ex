@@ -40,8 +40,9 @@ defmodule HelloPhoenix.CategoryController do
     conn = common(conn, params)
     pagination = case Map.fetch(params, "id") do
       {:ok, id} ->
+        category = Category |> where(hash_id: ^id) |> Repo.one!
         Article
-        |> where(category_id: ^id)
+        |> where(category_id: ^category.id)
         |> order_by(desc: :inserted_at)
         |> preload([:category, :tags, :comments])
         |> Repo.paginate(params)

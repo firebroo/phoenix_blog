@@ -14,7 +14,7 @@ defmodule HelloPhoenix.User.CategoryController do
   end
 
   def create(conn, %{"category" => category_params}) do
-    changeset = Category.changeset(%Category{}, category_params)
+    changeset = Category.create_changeset(%Category{}, category_params)
 
     case Repo.insert(changeset) do
       {:ok, _category} ->

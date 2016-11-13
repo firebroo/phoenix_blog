@@ -4,7 +4,7 @@
     <ul class="widget-body hot-posts">
         <%= for article <- @hot_articles do %>
         <a class="list-group-item" title="<%= article.title %>" 
-        href="<%= category_article_path(@conn, :show, article.category, article)%>">
+        href="<%= category_article_path(@conn, :show, article.category.hash_id, article.hash_id)%>">
             <span class="badge"><%= article.reading %></span>
             <%= article.title %>
             <span class="clearfix"></span>

@@ -26,7 +26,7 @@ defmodule HelloPhoenix.User.ArticleController do
   end
 
   def create(conn, %{"article" => article_params, "tags" => tag_ids}) do
-    changeset = Article.changeset(%Article{}, article_params)
+    changeset = Article.create_changeset(%Article{}, article_params)
 
     case Repo.insert(changeset) do
       {:ok, article} ->
@@ -50,7 +50,7 @@ defmodule HelloPhoenix.User.ArticleController do
   end
 
   def create(conn, %{"article" => article_params}) do
-    changeset = Article.changeset(%Article{}, article_params)
+    changeset = Article.create_changeset(%Article{}, article_params)
 
     case Repo.insert(changeset) do
       {:ok, _article} ->

@@ -18,9 +18,9 @@
                         <ul class="widget-body list-group">
                             <%= for category <- @categorys do %>
                                 <%= if category.hash_id == @conn.params |> Map.get("id") do %>
-                                <a title="<%= category.name %>" href="<%= category_path(@conn, :show, category) %>" class="list-group-item active">
+                                <a title="<%= category.name %>" href="<%= category_path(@conn, :show, category.hash_id) %>" class="list-group-item active">
                                 <%= else %>
-                                <a title="<%= category.name %>" href="<%= category_path(@conn, :show, category) %>" class="list-group-item">
+                                <a title="<%= category.name %>" href="<%= category_path(@conn, :show, category.hash_id) %>" class="list-group-item">
                                 <% end %><%= category.name %><span class="badge"><%= Enum.count category.articles%></span></a>
                             <% end %>
                         </ul>

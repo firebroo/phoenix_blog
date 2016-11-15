@@ -2,21 +2,7 @@ defmodule HelloPhoenix.ArticleController do
     use HelloPhoenix.Web, :controller
 
     # 导入Model
-    alias HelloPhoenix.{Category, Article, Comment}
-
-    def index(conn, %{"category_id" => category_id}) do
-        categorys = Repo.all(Category)
-
-        category = Category
-        |> Repo.get!(category_id)
-        |> Repo.preload([:articles])
-
-        conn
-        |> assign(:category, category)
-        |> assign(:categorys, categorys)
-        |> assign(:category_id, category_id)
-        |> render("index.html")
-    end
+    alias HelloPhoenix.{Article, Comment}
 
     def show(conn, %{"category_id" => category_id, "id" => id}) do
         article = Article

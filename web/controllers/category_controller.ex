@@ -4,19 +4,25 @@ defmodule HelloPhoenix.CategoryController do
   alias HelloPhoenix.{Category, Article, Tag}
 
   defp common(conn, params) do
-    categorys = Category
-    |> Repo.all
-    |> Repo.preload(:articles)
+    categorys = ConCache.get_or_store(:hello_phoenix, "categorys", fn() -> 
+      Category
+      |> Repo.all
+      |> Repo.preload(:articles)
+    end)
 
-    tags = Tag
-    |> Repo.all
-    |> Repo.preload(:articles)
+    tags = ConCache.get_or_store(:hello_phoenix, "tags", fn() -> 
+      Tag
+      |> Repo.all
+      |> Repo.preload(:articles)
+    end)
 
-    hot_articles = Article
-    |> order_by(desc: :reading)
-    |> limit(10)
-    |> Repo.all
-    |> Repo.preload(:category)
+    hot_articles = ConCache.get_or_store(:hello_phoenix, "hot_articles", fn() -> 
+      Article
+      |> order_by(desc: :reading)
+      |> limit(10)
+      |> Repo.all
+      |> Repo.preload(:category)
+    end)
 
     conn
     |> assign(:hot_articles, hot_articles)
@@ -26,10 +32,12 @@ defmodule HelloPhoenix.CategoryController do
 
   def index(conn, params) do
     conn = common(conn, params)
-    pagination = Article
-    |> order_by(desc: :inserted_at)
-    |> preload([:category, :tags, :comments])
-    |> Repo.paginate(params)
+    pagination = ConCache.get_or_store(:hello_phoenix, "pagination", fn() -> 
+      Article
+      |> order_by(desc: :inserted_at)
+      |> preload([:category, :tags, :comments])
+      |> Repo.paginate(params)
+    end)
 
     conn
     |> assign(:pagination, pagination)

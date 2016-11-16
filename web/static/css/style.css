@@ -1,0 +1,9 @@
+.widget-user-image:hover {
+    -webkit-transform: rotate(360deg); /* Chrome, Safari, Opera */
+    transform: rotate(360deg);
+}
+
+.widget-user-image {
+ -webkit-transition: width 1s, height 1s, -webkit-transform 1s; /* For Safari 3.1 to 6.0 */
+ transition: width 1s, height 1s, transform 1s;
+}

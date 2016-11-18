@@ -32,7 +32,6 @@
         <style>
             @media  screen and (min-width: 768px) {
             .main-header {
-                background: url("https://ooo.0o0.ooo/2016/10/22/580b494a8e572.jpg") no-repeat center center;
                 background-size: 100% auto;
                 position: static;
             }

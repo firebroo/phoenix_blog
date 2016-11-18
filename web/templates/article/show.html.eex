@@ -50,23 +50,26 @@
     </div>
 
     <div class="row mt-30">
-        <div id="comment-wrap" class="col-md-8 col-md-offset-2 col-sm-12 phone-no-padding">
+        <div id="comment-wrap" class="col-md-8 col-md-offset-2 col-sm-12">
             <div class="comment">
                 <div class="comment-header">
                     <h6 id="comments_count"><i class="fa fa-comments fa-fw"></i>评论</h6>
                 </div>
                 <div class="comment-body">
+                <%= if @comments == [] do %>
+                    <p class="meta-item center-block">暂无评论~~</p>
+                <% end %>
                 <%= for comment <- @comments do %>
                     <div class="comment-wrap">
                         <div class="pull-left">
-                            <a name="comment1" href="#xhh110">
+                            <a name="comment1" href="#<%= comment.name %>">
                                 <img width="40px" height="40px" class="img-circle" src="https://cdn.v2ex.co/avatar/eee9/bf07/136499_large.png?m=1442026544">
                             </a>
                         </div>
                         <div class="comment-info">
                             <div class="comment-head">
                                 <span class="name">
-                                    <a href="#xhh110"><%= comment.name %></a>
+                                    <a href="#<%= comment.name %>"><%= comment.name %></a>
                                 </span>
                                 <span class="comment-operation pull-right">
                                     <a href="javascript:void (0);" onclick="replySomeone('<%= comment.name %>')"><i class="fa fa-reply fa-fw"></i></a>

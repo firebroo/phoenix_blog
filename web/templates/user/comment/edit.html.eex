@@ -1,6 +1,10 @@
-<h2>Edit comment</h2>
-
-<%= render "form.html", changeset: @changeset,
-                        action: user_comment_path(@conn, :update, @comment) %>
-
-<%= link "Back", to: user_comment_path(@conn, :index) %>
+<div id="content-wrap">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-offset-2 col-md-8">
+                <h2 class="table-title" >修改评论</h2>
+                <%= render "form.html", changeset: @changeset, action: user_comment_path(@conn, :update, @comment) %>
+            </div>
+        </div>
+    </div>
+</div>

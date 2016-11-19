@@ -48,7 +48,7 @@ defmodule HelloPhoenix.User.CommentController do
       {:ok, comment} ->
         conn
         |> put_flash(:info, "Comment updated successfully.")
-        |> redirect(to: user_comment_path(conn, :show, comment))
+        |> redirect(to: user_comment_path(conn, :index))
       {:error, changeset} ->
         render(conn, "edit.html", comment: comment, changeset: changeset)
     end

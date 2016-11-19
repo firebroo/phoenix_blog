@@ -45,7 +45,7 @@ defmodule HelloPhoenix.User.CategoryController do
       {:ok, category} ->
         conn
         |> put_flash(:info, "Category updated successfully.")
-        |> redirect(to: user_category_path(conn, :show, category))
+        |> redirect(to: user_category_path(conn, :index))
       {:error, changeset} ->
         render(conn, "edit.html", category: category, changeset: changeset)
     end

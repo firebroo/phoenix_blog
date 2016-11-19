@@ -1,57 +1,65 @@
-<div class="box">
-    <%= form_for @changeset, user_upload_path(@conn, :update_avatar), [multipart: true], fn f -> %>
-        <%= if @changeset.action do %>
-            <div class="alert alert-danger">
-              <p>Oops, something went wrong! Please check the errors below.</p>
+<div id="content-wrap">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-offset-2 col-md-8">
+                <div class="box">
+                    <%= form_for @changeset, user_upload_path(@conn, :update_avatar), [multipart: true], fn f -> %>
+                        <%= if @changeset.action do %>
+                            <div class="alert alert-danger">
+                              <p>Oops, something went wrong! Please check the errors below.</p>
+                            </div>
+                        <% end %>
+
+                        <span class="elehead">更改头像</span>
+                        <span class="ff elehead">禁止使用任何低俗或者敏感图片作为头像</span>
+                        <hr>
+                        <div class="form-group ele">
+                            <p id="profile" >Profile picture</p>
+                            <img id="avatar_update" class="upload" src=<%= @avatar %> >
+                            <%= file_input f, :avatar, class: "file", id: "upload_button" %>
+                        </div>
+
+                        <div class="form-group ele">
+                            <%= submit "Update Profile", class: "btn-sm btn btn-primary", id: "update_profile" %>
+                        </div>
+                    <% end %>
+                </div>
+
+                <div class="box">
+                    <%= form_for @passwd_changeset, user_user_path(@conn, :update), fn f -> %>
+                      <%= if @passwd_changeset.action do %>
+                        <div class="alert alert-danger">
+                          <p>Oops, something went wrong! Please check the errors below.</p>
+                        </div>
+                      <% end %>
+                      <span class="elehead">更改密码</span>
+                      <span class="ff elehead">如果你不打算更改密码，请留空以下区域</span>
+                      <hr>
+
+                      <div class="form-group ele">
+                        <%= label f, :old_password, class: "control-label" %>
+                        <%= password_input f, :old_password, class: "form-control" %>
+                        <%= error_tag f, :old_password %>
+                      </div>
+
+                      <div class="form-group ele">
+                        <%= label f, :password, class: "control-label" %>
+                        <%= password_input f, :password, class: "form-control" %>
+                        <%= error_tag f, :password %>
+                      </div>
+
+                      <div class="form-group ele">
+                        <%= label f, :password_confirmation, class: "control-label" %>
+                        <%= password_input f, :password_confirmation, class: "form-control" %>
+                        <%= error_tag f, :password_confirmation %>
+                      </div>
+
+                      <div class="form-group ele">
+                        <%= submit "Update Password", class: "btn-sm btn btn-primary", id: "update_profile" %>
+                      </div>
+                    <% end %>
+                </div>
             </div>
-        <% end %>
-
-        <span class="elehead">更改头像</span>
-        <span class="ff elehead">禁止使用任何低俗或者敏感图片作为头像</span>
-        <hr id="box_hr">
-        <div class="form-group ele">
-            <p id="profile" >Profile picture</p>
-            <img id="avatar_update" class="upload" src=<%= @avatar %> >
-            <%= file_input f, :avatar, class: "file", id: "upload_button" %>
         </div>
-
-        <div class="form-group ele">
-            <%= submit "Update Profile", class: "btn-sm btn btn-primary", id: "update_profile" %>
-        </div>
-    <% end %>
-</div>
-
-<div class="box">
-    <%= form_for @passwd_changeset, user_user_path(@conn, :update), fn f -> %>
-      <%= if @passwd_changeset.action do %>
-        <div class="alert alert-danger">
-          <p>Oops, something went wrong! Please check the errors below.</p>
-        </div>
-      <% end %>
-      <span class="elehead">更改密码</span>
-      <span class="ff elehead">如果你不打算更改密码，请留空以下区域</span>
-      <hr id="box_hr">
-
-      <div class="form-group ele">
-        <%= label f, :old_password, class: "control-label" %>
-        <%= password_input f, :old_password, class: "form-control" %>
-        <%= error_tag f, :old_password %>
-      </div>
-
-      <div class="form-group ele">
-        <%= label f, :password, class: "control-label" %>
-        <%= password_input f, :password, class: "form-control" %>
-        <%= error_tag f, :password %>
-      </div>
-
-      <div class="form-group ele">
-        <%= label f, :password_confirmation, class: "control-label" %>
-        <%= password_input f, :password_confirmation, class: "form-control" %>
-        <%= error_tag f, :password_confirmation %>
-      </div>
-
-      <div class="form-group ele">
-        <%= submit "Update Password", class: "btn-sm btn btn-primary", id: "update_profile" %>
-      </div>
-    <% end %>
+    </div>
 </div>

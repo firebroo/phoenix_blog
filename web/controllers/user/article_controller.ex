@@ -1,7 +1,7 @@
 defmodule HelloPhoenix.User.ArticleController do
   use HelloPhoenix.Web, :controller
 
-  alias HelloPhoenix.{ArticleTag, Article, Category, Tag}
+  alias HelloPhoenix.{ArticleTag, Article, Category, Tag, Comment}
 
   def index(conn, _params) do
     articles = Article
@@ -70,8 +70,23 @@ defmodule HelloPhoenix.User.ArticleController do
 
 
   def show(conn, %{"id" => id}) do
-    article = Repo.get!(Article, id)
-    render(conn, "show.html", article: article)
+    #article = Repo.get!(Article, id)
+    #render(conn, "show.html", article: article)
+    article = Article
+    |> Repo.get!(id)
+    |> Repo.preload([:category, :tags, :comments])
+    
+    comments = Comment
+    |> where(article_id: ^article.id)
+    |> order_by(asc: :inserted_at)
+    |> Repo.all
+    changeset = Comment.changeset(%Comment{})
+    conn
+    |> assign(:article, article)
+    |> assign(:comments, comments)
+    |> assign(:changeset, changeset)
+    |> assign(:category_id, article.category.id)
+    |> render("show.html")
   end
 
   def edit(conn, %{"id" => id}) do

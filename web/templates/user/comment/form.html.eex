@@ -6,13 +6,13 @@
   <% end %>
 
   <div class="form-group">
-    <%= label f, :name, class: "control-label" %>
+    <%= label f, :name, "评论人", class: "control-label" %>
     <%= text_input f, :name, class: "form-control" %>
     <%= error_tag f, :name %>
   </div>
 
   <div class="form-group">
-    <%= label f, :body, class: "control-label" %>
+    <%= label f, :body, "评论内容", class: "control-label" %>
     <%= text_input f, :body, class: "form-control" %>
     <%= error_tag f, :body %>
   </div>

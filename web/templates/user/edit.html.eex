@@ -1,5 +1,10 @@
-<h2>修改密码</h2>
-
-<%= render "reset_password_from.html", changeset: @changeset,
-                        action: user_user_path(@conn, :update) %>
-
+<div id="content-wrap">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-offset-2 col-md-8">
+                <h2 class="table-title">修改密码</h2>
+                <%= render "reset_password_from.html", changeset: @changeset, action: user_user_path(@conn, :update) %>
+            </div>
+        </div>
+    </div>
+</div>

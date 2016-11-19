@@ -53,14 +53,29 @@
                            class="navbar-brand">firebroo</a>
                     </div>
                     <div class="collapse navbar-collapse fix-top" id="blog-navbar-collapse">
-                        <ul class="nav navbar-nav">
-                            <li><a class="menu-item" href="/achieve">归档</a></li>
-                            <li><a class="menu-item" href="/projects">项目</a></li>
-                            <li><a class="menu-item" href="/about">关于</a></li>
-                        </ul>
-                        <ul class="nav navbar-nav navbar-right blog-navbar">
-                            <li><a href="/users/login">登录</a></li>
-                        </ul>
+                        <%= if Plug.Conn.get_session(@conn, :user_id) do %> 
+                            <ul class="nav navbar-nav">
+                                <li><%= link "管理范畴", to: user_category_path(@conn, :index), class: "menu-item" %></li>
+                                <li><%= link "管理文章", to: user_article_path(@conn, :index), class: "menu-item" %></li>
+                                <li><%= link "管理评论", to: user_comment_path(@conn, :index), class: "menu-item" %></li>
+                                <li><%= link "管理标签", to: user_tag_path(@conn, :index), class: "menu-item" %></li>
+                                <li><a class="menu-item" href="/achieve">归档</a></li>
+                                <li><a class="menu-item" href="/projects">项目</a></li>
+                                <li><a class="menu-item" href="/about">关于</a></li>
+                            </ul>
+                            <ul class="nav navbar-nav navbar-right blog-navbar">
+                                <li><a href="/users/logout">登出</a></li>
+                            </ul>
+                        <% else %>
+                            <ul class="nav navbar-nav">
+                                <li><a class="menu-item" href="/achieve">归档</a></li>
+                                <li><a class="menu-item" href="/projects">项目</a></li>
+                                <li><a class="menu-item" href="/about">关于</a></li>
+                            </ul>
+                            <ul class="nav navbar-nav navbar-right blog-navbar">
+                                <li><a href="/users/login">登录</a></li>
+                            </ul>
+                        <% end %>
                         <form class="navbar-form navbar-right" role="search" method="get" action="/search">
                             <input type="text" class="form-control" name="q" placeholder="搜索" required>
                         </form>

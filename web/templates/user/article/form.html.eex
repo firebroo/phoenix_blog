@@ -6,30 +6,33 @@
   <% end %>
 
   <div class="form-group">
+    <%= label f, :category, "选择范畴", class: "control-label" %>
     <%= select f, :category_id,
         (for category <- @categorys, do: {category.name, category.id}),
-        prompt: "选择范畴"%>
+        prompt: "选择范畴", style: "display: block"%>
   </div>
 
   <div class="form-group">
-    <%= label f, :title, class: "control-label" %>
+    <%= label f, :title, "标题", class: "control-label" %>
     <%= text_input f, :title, class: "form-control",placeholder: "文章标题" %>
     <%= error_tag f, :title %>
   </div>
   
+
   <div class="form-group">
+    <%= label f, :title, "选择范畴", class: "control-label", style: "display: block" %>
     <%= for tag <- @tags do %>
         <%=if tag in @exist_tags do %>
-            <label id="select_tag"><input name="tags[]" id="tags_" type="checkbox" value="<%= tag.id %>" checked="checked" "/><%= tag.name %> </label> 
+            <label id="select_tag"><input name="tags[]" id="tags_" type="checkbox" value="<%= tag.id %>" checked="checked"/><%= tag.name %> </label> 
         <%= else %>
-            <label id="select_tag"><input name="tags[]" id="tags_" type="checkbox" value="<%= tag.id %>" "/><%= tag.name %> </label> 
+            <label id="select_tag"><input name="tags[]" id="tags_" type="checkbox" value="<%= tag.id %>"/><%= tag.name %> </label> 
         <%= end %>
     <%= end %>
   </div>
 
   <div class="form-group">
-    <%= label f, :body, class: "control-label" %>
-    <%= textarea f, :body, class: "form-control", id: "article_body" %>
+    <%= label f, :body, "文章内容", class: "control-label" %>
+    <%= textarea f, :body, class: "form-control", id: "article_body", rows: 20 %>
     <%= error_tag f, :body %>
   </div>
 

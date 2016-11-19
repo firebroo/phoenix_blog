@@ -1,6 +1,10 @@
-<h2>Edit category</h2>
-
-<%= render "form.html", changeset: @changeset,
-                        action: user_category_path(@conn, :update, @category) %>
-
-<%= link "Back", to: user_category_path(@conn, :index) %>
+<div id="content-wrap">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-offset-2 col-md-8">
+                <h2 class="table-title">编辑范畴</h2>
+                <%= render "form.html", changeset: @changeset, action: user_category_path(@conn, :update, @category) %>
+            </div>
+        </div>
+    </div>
+</div>

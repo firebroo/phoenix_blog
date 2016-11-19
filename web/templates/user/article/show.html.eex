@@ -1,23 +1,46 @@
-<h2>Show article</h2>
-
-<ul>
-
-  <li>
-    <strong>Title:</strong>
-    <%= @article.title %>
-  </li>
-
-  <li>
-    <strong>Body:</strong>
-    <%= @article.body %>
-  </li>
-
-  <li>
-    <strong>Reading:</strong>
-    <%= @article.reading %>
-  </li>
-
-</ul>
-
-<%= link "Edit", to: user_article_path(@conn, :edit, @article) %>
-<%= link "Back", to: user_article_path(@conn, :index) %>
+<div class="container">
+    <div id="post-detail-wrap" class="row">
+        <div class="col-md-10 col-md-offset-1 col-sm-12 phone-no-padding">
+            <div class="post-detail">
+                <div class="center-block">
+                    <div class="post-detail-title"><%= @article.title %></div>
+                    <div class="post-meta">
+                        <span class="post-time">
+                            <i class="fa fa-calendar-o"></i>
+                            <time datetime="<%= @article.inserted_at %>">
+                                <%= @article.inserted_at %>
+                            </time>
+                        </span>
+                        <span class="post-category">
+                            &nbsp;|&nbsp;
+                            <i class="fa fa-folder-o"></i>
+                            <a href="<%= category_path(@conn, :show, @article.category.hash_id)%>">
+                                算法
+                            </a>
+                        </span>
+                        <span class="post-comments-count">
+                            &nbsp;|&nbsp;
+                            <i class="fa fa-comments-o fa-fw" aria-hidden="true"></i>
+                            <span><%= Enum.count @comments %></span>
+                        </span>
+                        <span>
+                            &nbsp;|&nbsp;
+                            <i class="fa fa-eye"></i>
+                            <span><%= @article.reading %></span>
+                        </span>
+                    </div>
+                </div>
+                <br>
+                <div class="post-detail-content">
+                    <%= markdown @article.body %>
+                </div>
+                <div class="tag-list">
+                    <i class="fa fa-tags"></i>
+                    <%= for tag <- @article.tags do %>
+                        <a class="tag" href="<%= tag_path(@conn, :show, tag.name) %>"><%= tag.name %></a>
+                    <% end %>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

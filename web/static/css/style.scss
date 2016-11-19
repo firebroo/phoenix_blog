@@ -1,0 +1,85 @@
+@mixin transform-action($style) {
+       transform: $style;
+       -o-transform: $style;
+       -ms-transform: $style;
+       -moz-transform: $style;
+       -webkit-transform: $style; 
+}
+
+@mixin image-animation($style) {
+    animation:widget-user-image $style;
+    -o-animation:widget-user-image $style;
+    -ms-animation:widget-user-image $style;
+    -moz-animation:widget-user-image $style;
+    -webkit-animation:widget-user-image $style;
+}
+
+@keyframes widget-user-image {
+    0% {
+        @include transform-action(rotateY(0deg));
+    } 
+    100% {
+        @include transform-action(rotateY(360deg));
+    } 
+}
+
+.widget-user-image:hover {
+    @include image-animation(2.5s linear infinite);
+}
+
+.widget-user-image {
+    cursor: pointer;
+    transform-style: preserve-3d;
+}
+
+.table {
+    margin-top: 10px;
+    .th-right {
+        text-align:right;
+    }
+    form.link {
+        display: inline-block;
+    }
+}
+
+.table-title {
+    text-align:center;
+}
+
+select {
+  border: solid 1px #000;
+
+  appearance:none;
+  -moz-appearance:none;
+  -webkit-appearance:none;
+
+  /*在选择框的最右侧中间显示小箭头图片*/
+  background: url("/images/arrow.png") no-repeat scroll right center transparent;
+
+
+  padding-right: 14px;
+}
+
+
+/*清除ie的默认选择框样式清除，隐藏下拉箭头*/
+select::-ms-expand { display: none; }
+
+.box {
+    background-color: #fff;
+    border-radius: 3px;
+    box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.1);
+    border: 1px solid #e2e2e2;
+    margin-top: 40px;
+    margin-bottom: 40px;
+    padding:10px 0px;
+    .elehead {
+        margin-left: 5px;
+    }
+    .ff {
+        float: right;
+        margin-right: 5px;
+    }
+    .ele {
+        margin: 10px;
+    }
+}

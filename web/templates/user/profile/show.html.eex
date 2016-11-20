@@ -15,7 +15,7 @@
                         <hr>
                         <div class="form-group ele">
                             <p id="profile" >Profile picture</p>
-                            <img id="avatar_update" class="upload" src=<%= @avatar %> >
+                            <img id="avatar_update" class="avatar upload" src=<%= @avatar %> >
                             <%= file_input f, :avatar, class: "file", id: "upload_button" %>
                         </div>
 

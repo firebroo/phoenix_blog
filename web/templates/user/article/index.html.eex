@@ -3,7 +3,7 @@
         <div class="row">
             <div class="col-md-12">
                 <h2 class="table-title" >文章列表</h2>
-                <%= link "New article", to: user_article_path(@conn, :new), class: "btn btn-success" %>
+                <%= link "创建文章", to: user_article_path(@conn, :new), class: "btn btn-success" %>
                 <table class="table">
                   <thead>
                     <tr>

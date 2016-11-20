@@ -45,7 +45,7 @@ defmodule HelloPhoenix.User.TagController do
       {:ok, tag} ->
         conn
         |> put_flash(:info, "Tag updated successfully.")
-        |> redirect(to: user_tag_path(conn, :show, tag))
+        |> redirect(to: user_tag_path(conn, :index))
       {:error, changeset} ->
         render(conn, "edit.html", tag: tag, changeset: changeset)
     end

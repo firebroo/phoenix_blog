@@ -15,4 +15,4 @@ Ready to run in production? Please [check our deployment guides](http://www.phoe
 项目的css使用scss编写，安装部署之先执行
     scss style.scss style.css
 
-如果需要自己修改scss,因为brunch不能把scss文件时时编译为对应的css,导致我在写scss的时候，必需手动scss xxx.scss xxx.css,每次修改累的半死，于是自己鲁了个notify脚本[notifyScss]（https://github.com/firebroo/notifyScss）
+如果需要自己修改scss,因为brunch不能把scss文件时时编译为对应的css,导致我在写scss的时候，必需手动scss xxx.scss xxx.css,每次修改累的半死，于是自己鲁了个notify脚本[notifyScss](https://github.com/firebroo/notifyScss)

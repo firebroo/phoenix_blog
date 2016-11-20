@@ -11,10 +11,8 @@ Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
 
 Ready to run in production? Please [check our deployment guides](http://www.phoenixframework.org/docs/deployment).
 
-## Learn more
+### Usage
+项目的css使用scss编写，安装部署之先执行
+    scss style.scss style.css
 
-  * Official website: http://www.phoenixframework.org/
-  * Guides: http://phoenixframework.org/docs/overview
-  * Docs: https://hexdocs.pm/phoenix
-  * Mailing list: http://groups.google.com/group/phoenix-talk
-  * Source: https://github.com/phoenixframework/phoenix
+如果需要自己修改scss,因为brunch不能把scss文件时时编译为对应的css,导致我在写scss的时候，必需手动scss xxx.scss xxx.css,每次修改累的半死，于是自己鲁了个notify脚本[notifyScss]（https://github.com/firebroo/notifyScss）

@@ -87,3 +87,47 @@ select::-ms-expand { display: none; }
         margin: 10px;
     }
 }
+
+.form-signin-regist {
+    max-width: 500px;
+    padding: 19px 29px 29px;
+    margin: 20px auto 20px;
+    background-color: #fff;
+    border: 1px solid #e5e5e5;
+    -webkit-border-radius: 5px;
+       -moz-border-radius: 5px;
+            border-radius: 5px;
+    -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.05);
+       -moz-box-shadow: 0 1px 2px rgba(0,0,0,.05);
+            box-shadow: 0 1px 2px rgba(0,0,0,.05);
+    input[type="text"], input[type="password"] {
+        font-size: 16px;
+        height: auto;
+        margin-bottom: 20px;
+        padding: 7px 9px;
+    }
+    h2 {
+        margin-top: 0px;
+        line-height: 40px;
+    }
+    span {
+        vertical-align: middle;
+        padding-top: 16px;
+        float: right;
+        font-size: 18px;
+        line-height: 1.3333333;
+        border-radius: 6px;
+    }
+    .form-signin-heading, .form-register-heading {
+        margin-bottom: 10px;
+        text-align: center;
+    }
+}
+
+.form-register {
+    @extend .form-signin-regist;
+}
+
+.form-signin {
+    @extend .form-signin-regist;
+}

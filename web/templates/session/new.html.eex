@@ -4,14 +4,10 @@
     <div class="container">
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
-                <h2>登陆</h2> 
-                还没有账户? 点击<%= link "注册", to: user_path(@conn, :new) %>
-
-                <%= render "form.html", changeset: @changeset,
-                                        action: session_path(@conn, :create) %>
-</div>
-</div>
-</div>
+                <%= render "form.html", changeset: @changeset, action: session_path(@conn, :create), conn: @conn %>
+            </div>
+        </div>
+    </div>
 </div>
 
 

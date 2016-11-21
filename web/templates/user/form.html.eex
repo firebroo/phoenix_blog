@@ -1,29 +1,22 @@
-<%= form_for @changeset, @action, fn f -> %>
+<%= form_for @changeset, @action,[class: "form-register"], fn f -> %>
+  <h2 class="form-register-heading">注册用户</h2>
   <%= if @changeset.action do %>
     <div class="alert alert-danger">
       <p>Oops, something went wrong! Please check the errors below.</p>
     </div>
   <% end %>
 
-  <div class="form-group">
-    <%= label f, :name, class: "control-label" %>
-    <%= text_input f, :name, class: "form-control" %>
+    <%= text_input f, :name, class: "form-control",placeholder: "用户名" %>
     <%= error_tag f, :name %>
-  </div>
 
-  <div class="form-group">
-    <%= label f, :password, class: "control-label" %>
-    <%= password_input f, :password, class: "form-control" %>
+    <%= password_input f, :password, class: "form-control", placeholder: "密码" %>
     <%= error_tag f, :password %>
-  </div>
 
-  <div class="form-group">
-    <%= label f, :password_confirmation, class: "control-label" %>
-    <%= password_input f, :password_confirmation, class: "form-control" %>
+    <%= password_input f, :password_confirmation, class: "form-control",placeholder: "确认密码" %>
     <%= error_tag f, :password_confirmation %>
-  </div>
 
-  <div class="form-group">
-    <%= submit "Submit", class: "btn btn-primary" %>
+  <div class="submit">
+    <%= submit "注册", class: "btn btn-lg btn-primary" %>
+    <span>已有账户? 点击<%= link "登陆", to: session_path(@conn, :new) %></span>
   </div>
 <% end %>

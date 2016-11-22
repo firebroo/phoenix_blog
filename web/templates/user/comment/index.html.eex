@@ -18,9 +18,9 @@
                                 <%= for comment <- @comments do %>
                                 <tr>
                                     <th scope="row"><%= comment.id %></th>
-                                    <td><%= comment.name %></td>
-                                    <td><%= comment.body %></td>
-                                    <td><%= article_name(comment) %></td>
+                                    <td class="over"><%= comment.name %></td>
+                                    <td class="over"><%= comment.body %></td>
+                                    <td ><%= article_name(comment) %></td>
                                     <td class="text-right">
                                       <%= link "Edit", to: user_comment_path(@conn, :edit, comment), class: "btn btn-xs btn-warning" %>
                                       <%= link "Delete", to: user_comment_path(@conn, :delete, comment), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-xs btn-danger" %>

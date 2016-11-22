@@ -194,3 +194,12 @@ select::-ms-expand { display: none; }
 .dropdown-menu {
     padding: 0px;
 }
+
+table {
+    table-layout:fixed;
+    .over {
+        overflow:hidden;
+        white-space:nowrap;
+        text-overflow:ellipsis;
+    }   
+}

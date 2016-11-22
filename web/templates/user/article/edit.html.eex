@@ -1,10 +1,17 @@
 <div id="content-wrap">
     <div class="container">
         <div class="row">
-            <div class="col-md-12">
-                <h2 class="table-title" >编辑文章</h2>
-                <%= render "form.html", changeset: @changeset, categorys: @categorys, tags: @tags, exist_tags: @exist_tags,
-                        action: user_article_path(@conn, :update, @article) %>
+            <%= render HelloPhoenix.ShareView, "user_left_nagiva.html", conn: @conn %>
+            <div class="col-md-10">
+                <div class="edit">
+                    <div class="header">
+                        <span>编辑文章</span>
+                    </div>
+                    <div class="body">
+                    <%= render "form.html", changeset: @changeset, categorys: @categorys, tags: @tags, exist_tags: @exist_tags,
+                                action: user_article_path(@conn, :update, @article) %>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

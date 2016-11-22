@@ -1,32 +1,38 @@
 <div id="content-wrap">
     <div class="container">
         <div class="row">
-            <div class="col-md-offset-1 col-md-10">
-                <h2 class="table-title">评论列表</h2>
-                <table class="table">
-                  <thead>
-                    <tr>
-                      <th>评论人</th>
-                      <th>评论内容</th>
-                      <th>文章标题</th>
-                      <th class="th-right">操作</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                <%= for comment <- @comment do %>
-                    <tr>
-                      <td><%= comment.name %></td>
-                      <td><%= comment.body %></td>
-                      <td><%= article_name(comment) %></td>
-                      <td class="text-right">
-                        <%= link "Edit", to: user_comment_path(@conn, :edit, comment), class: "btn btn-warning" %>
-                        <%= link "Delete", to: user_comment_path(@conn, :delete, comment), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger" %>
-                      </td>
-                    </tr>
-                <% end %>
-                  </tbody>
-                </table>
+            <%= render HelloPhoenix.ShareView, "user_left_nagiva.html", conn: @conn %>
+            <div class="col-md-10">
+                <div class="panel panel-default">
+                    <div class="panel-heading">标签列表</div>
+                    <div class="panel-body">
+                        <table class="table table-hover table-top table-cell-mid">
+                            <tbody>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>评论人</th>
+                                    <th>评论内容</th>
+                                    <th>文章标题</th>
+                                    <th class="text-right">操作</th>
+                                </tr>
+                                <%= for comment <- @comments do %>
+                                <tr>
+                                    <th scope="row"><%= comment.id %></th>
+                                    <td><%= comment.name %></td>
+                                    <td><%= comment.body %></td>
+                                    <td><%= article_name(comment) %></td>
+                                    <td class="text-right">
+                                      <%= link "Edit", to: user_comment_path(@conn, :edit, comment), class: "btn btn-warning" %>
+                                      <%= link "Delete", to: user_comment_path(@conn, :delete, comment), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger" %>
+                                    </td>
+                                </tr>
+                                <% end %>
+                            </tbody>
+                       </table>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 </div>
+

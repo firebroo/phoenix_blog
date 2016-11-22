@@ -1,7 +1,8 @@
 <div id="content-wrap">
     <div class="container">
         <div class="row">
-            <div class="col-md-offset-2 col-md-8">
+            <%= render HelloPhoenix.ShareView, "user_left_nagiva.html", conn: @conn %>
+            <div class="col-md-8">
                 <div class="box">
                     <%= form_for @changeset, user_upload_path(@conn, :update_avatar), [multipart: true], fn f -> %>
                         <%= if @changeset.action do %>
@@ -10,8 +11,10 @@
                             </div>
                         <% end %>
 
-                        <span class="elehead">更改头像</span>
-                        <span class="ff elehead">禁止使用任何低俗或者敏感图片作为头像</span>
+                        <div class="header">
+                            <span class="elehead">更改头像</span>
+                            <span class="ff elehead">禁止使用任何低俗或者敏感图片作为头像</span>
+                        </div>
                         <hr>
                         <div class="form-group ele">
                             <p id="profile" >Profile picture</p>
@@ -20,7 +23,7 @@
                         </div>
 
                         <div class="form-group ele">
-                            <%= submit "Update Profile", class: "btn-sm btn btn-primary", id: "update_profile" %>
+                            <%= submit "Update Profile", class: "btn btn-sm btn-primary", id: "update_profile" %>
                         </div>
                     <% end %>
                 </div>
@@ -32,10 +35,11 @@
                           <p>Oops, something went wrong! Please check the errors below.</p>
                         </div>
                       <% end %>
-                      <span class="elehead">更改密码</span>
-                      <span class="ff elehead">如果你不打算更改密码，请留空以下区域</span>
+                      <div class="header">
+                          <span class="elehead">更改密码</span>
+                          <span class="ff elehead">如果你不打算更改密码，请留空以下区域</span>
+                      </div>
                       <hr>
-
                       <div class="form-group ele">
                         <%= label f, :old_password, class: "control-label" %>
                         <%= password_input f, :old_password, class: "form-control" %>
@@ -55,7 +59,7 @@
                       </div>
 
                       <div class="form-group ele">
-                        <%= submit "Update Password", class: "btn-sm btn btn-primary", id: "update_profile" %>
+                        <%= submit "Update Password", class: "btn btn-sm btn-primary", id: "update_profile" %>
                       </div>
                     <% end %>
                 </div>

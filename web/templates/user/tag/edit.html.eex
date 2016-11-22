@@ -1,10 +1,16 @@
 <div id="content-wrap">
     <div class="container">
         <div class="row">
-            <div class="col-md-offset-2 col-md-8">
-                <h2 class="table-title">编辑标签</h2>
-                <%= render "form.html", changeset: @changeset,
-                                        action: user_tag_path(@conn, :update, @tag) %>
+            <%= render HelloPhoenix.ShareView, "user_left_nagiva.html", conn: @conn %>
+            <div class="col-md-10">
+                <div class="edit">
+                    <div class="header">
+                        <span>编辑标签</span>
+                    </div>
+                    <div class="body">
+                        <%= render "form.html", changeset: @changeset, action: user_tag_path(@conn, :update, @tag) %>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

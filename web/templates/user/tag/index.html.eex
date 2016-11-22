@@ -1,29 +1,37 @@
 <div id="content-wrap">
     <div class="container">
         <div class="row">
-            <div class="col-md-offset-2 col-md-8">
-            <h2 class="table-title" >标签列表</h2>
-            <%= link "创建标签", to: user_tag_path(@conn, :new), class: "btn btn-success" %>
-            <table class="table">
-              <thead>
-                <tr>
-                  <th>名字</th>
-                  <th class="th-right">操作</th>
-                </tr>
-              </thead>
-              <tbody>
-            <%= for tag <- @tags do %>
-                <tr>
-                  <td><%= tag.name %></td>
-                  <td class="text-right">
-                    <%= link "Edit", to: user_tag_path(@conn, :edit, tag), class: "btn btn-default" %>
-                    <%= link "Delete", to: user_tag_path(@conn, :delete, tag), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger" %>
-                  </td>
-                </tr>
-            <% end %>
-              </tbody>
-            </table>
+            <%= render HelloPhoenix.ShareView, "user_left_nagiva.html", conn: @conn %>
+            <div class="col-md-10">
+                <div class="panel panel-default">
+                    <div class="panel-heading">标签列表</div>
+                    <div class="panel-body">
+                        <div class="navbar">
+                            <%= link "创建标签", to: user_tag_path(@conn, :new), class: "btn btn-success" %>
+                        </div>
+                        <table class="table table-hover table-top table-cell-mid">
+                            <tbody>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>名字</th>
+                                    <th class="text-right">操作</th>
+                                </tr>
+                                <%= for tag <- @tags do %>
+                                <tr>
+                                    <th scope="row"><%= tag.id %></th>
+                                    <td><%= tag.name %></td>
+                                    <td class="text-right">
+                                      <%= link "Edit", to: user_tag_path(@conn, :edit, tag), class: "btn btn-warning" %>
+                                      <%= link "Delete", to: user_tag_path(@conn, :delete, tag), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger" %>
+                                    </td>
+                                </tr>
+                                <% end %>
+                            </tbody>
+                       </table>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 </div>
+

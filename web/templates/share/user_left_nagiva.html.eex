@@ -1,0 +1,14 @@
+<div class="col-md-2">
+    <div class="panel panel-default">
+        <div class="panel-heading">菜单</div>
+        <div class="panel-body text-center">
+            <ul class="nav nav-list">
+                <li><%= link "管理文章", to: user_article_path(@conn, :index) %></li>
+                <li><%= link "管理范畴", to: user_category_path(@conn, :index) %></li>
+                <li><%= link "管理标签", to: user_tag_path(@conn, :index) %></li>
+                <li><%= link "管理评论", to: user_comment_path(@conn, :index) %></li>
+                <li><%= link "个人信息", to: user_profile_path(@conn, :show) %></li>
+            </ul>
+        </div>
+    </div>
+</div>

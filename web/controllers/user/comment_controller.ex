@@ -4,11 +4,11 @@ defmodule HelloPhoenix.User.CommentController do
   alias HelloPhoenix.Comment
 
   def index(conn, _params) do
-    comment = Comment
+    comments = Comment
     |> Repo.all
     |> Repo.preload(:article)
 
-    render(conn, "index.html", comment: comment)
+    render(conn, "index.html", comments: comments)
   end
 
   def new(conn, _params) do

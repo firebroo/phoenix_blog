@@ -1,25 +1,42 @@
 <div id="content-wrap">
     <div class="container">
+        <div class="row">
+            <%= render HelloPhoenix.ShareView, "user_left_nagiva.html", conn: @conn %>
+            <div class="col-md-10">
+                <div class="panel panel-default">
+                    <div class="panel-heading">文章列表</div>
+                    <div class="panel-body">
+                        <div class="navbar">
+                            <%= link "创建文章", to: user_article_path(@conn, :new), class: "btn btn-success" %>
+                        </div>
+                        <table class="table table-hover table-top table-cell-mid">
+                            <tbody>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>标题</th>
+                                    <th>点击次数</th>
+                                    <th>所属范畴</th>
+                                    <th class="text-right">操作</th>
+                                </tr>
+                                <%= for article <- @articles do %>
+                                <tr>
+                                    <th scope="row" ><%= article.id %></th>
+                                    <td><%= article.title %></td>
+                                    <td><%= article.reading %></td>
+                                    <td><%= category_name(article) %></td>
+                                    <td class="text-right">
+                                        <%= link "Show", to: user_article_path(@conn, :show, article), class: "btn btn-info btn-xs" %>
+                                        <%= link "Edit", to: user_article_path(@conn, :edit, article), class: "btn btn-warning btn-xs" %>
+                                        <%= link "Delete", to: user_article_path(@conn, :delete, article), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs" %>
+                                    </td>
+                                </tr>
+                                <% end %>
+                            </tbody>
+                       </table>
+                    </div>
+                </div>
+            </div>
         </div>
-            <div class="container">
-                    <div class="row">
-                                <div class="col-md-8 col-md-offset-2">
-<img id="avatar" src=<%= @avatar %> alt="20">
-<a href="<%= user_profile_path(@conn, :show)%>"> <span id="username"> <%= @username %></span><a>
-<div class="manage category_manage">
-<%= link "管理范畴", to: user_category_path(@conn, :index) %>
-</div>
-<div class="manage article_manage">
-<%= link "管理文章", to: user_article_path(@conn, :index) %>
-</div>
-<div class="manage comment_manage">
-<%= link "管理评论", to: user_comment_path(@conn, :index) %>
-</div>
-<div class="manage tag_manage">
-<%= link "管理标签", to: user_tag_path(@conn, :index) %>
-</div>
-</div>
-</div>
-</div>
+    </div>
 </div>
 

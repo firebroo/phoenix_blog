@@ -47,7 +47,6 @@
 }
 
 select {
-  border: solid 1px #000;
 
   appearance:none;
   -moz-appearance:none;
@@ -69,9 +68,15 @@ select::-ms-expand { display: none; }
     border-radius: 3px;
     box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.1);
     border: 1px solid #e2e2e2;
-    margin-top: 40px;
     margin-bottom: 40px;
-    padding:10px 0px;
+    .header {
+        border-color: #ddd;
+        padding:10px 0px;
+        background-color: #f5f5f5;
+    }
+    hr {
+        margin-top: 0px;
+    }
     .avatar {
         width: 73px;
         height: 73px;
@@ -89,9 +94,9 @@ select::-ms-expand { display: none; }
 }
 
 .form-signin-regist {
-    max-width: 500px;
+    max-width: 450px;
     padding: 19px 29px 29px;
-    margin: 20px auto 20px;
+    margin: 50px auto 20px;
     background-color: #fff;
     border: 1px solid #e5e5e5;
     -webkit-border-radius: 5px;
@@ -130,4 +135,34 @@ select::-ms-expand { display: none; }
 
 .form-signin {
     @extend .form-signin-regist;
+}
+
+.edit {
+    border-radius: 3px;
+    min-height: 270px;
+    box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.1);
+    border: 1px solid #e2e2e2;
+    margin-bottom: 30px;
+    .header {
+        border-color: #ddd;
+        padding:10px 15px;
+        background-color: #f5f5f5;
+        border-bottom: 1px solid transparent;
+        border-top-right-radius: 3px; 
+        border-top-left-radius: 3px; 
+    }
+    .body {
+        margin: 25px 10px;
+    }
+    select {
+        width: 30%;
+        background-color: #fff;
+        border: 1px solid #ccc;
+        appearance:none;
+        -moz-appearance:none;
+        -webkit-appearance:none;
+        /*在选择框的最右侧中间显示小箭头图片*/
+        background: url("/images/arrow.png") no-repeat scroll right center transparent;
+        padding-right: 14px;
+    }
 }

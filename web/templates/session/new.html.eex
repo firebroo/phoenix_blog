@@ -1,7 +1,5 @@
 <div id="content-wrap">
     <div class="container">
-    </div>
-    <div class="container">
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
                 <%= render "form.html", changeset: @changeset, action: session_path(@conn, :create), conn: @conn %>

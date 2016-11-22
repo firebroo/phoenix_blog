@@ -1,7 +1,7 @@
 defmodule HelloPhoenix.SessionController do
   use HelloPhoenix.Web, :controller
 
-  alias HelloPhoenix.{User}
+  alias HelloPhoenix.{User, Article}
   
   def new(conn, _params) do
     changeset = User.changeset(%User{})
@@ -39,10 +39,14 @@ defmodule HelloPhoenix.SessionController do
 
   def home(conn, _params) do
     user = Repo.get!(User, get_session(conn, :user_id)) 
+    articles = Article
+    |> Repo.all
+    |> Repo.preload(:category)
 
     conn
     |> assign(:username, get_session(conn, :username))
     |> assign(:avatar, user.avatar)
+    |> assign(:articles, articles)
     |> render("home.html")
   end
 

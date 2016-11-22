@@ -166,3 +166,31 @@ select::-ms-expand { display: none; }
         padding-right: 14px;
     }
 }
+
+.dropdown-toggle {
+    color: #fff;
+    &:hover {
+        background-color: #52768e!important;
+    }
+    .avatar {
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+    } 
+}
+
+.nav .open>a, .nav .open>a:hover {
+    color: #fff;
+    background-color: #52768e!important;
+}
+
+.dropdown-menu>li>a {
+    padding: 5px 20px;
+    &:hover {
+        border-radius: 0px!important; 
+    }
+}
+
+.dropdown-menu {
+    padding: 0px;
+}

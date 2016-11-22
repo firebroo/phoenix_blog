@@ -27,6 +27,7 @@ defmodule HelloPhoenix.SessionController do
         conn
         |> put_flash(:info, "登陆成功")
         |> put_session(:user_id, user.id)
+        |> put_session(:user_avatar, user.avatar)
         |> put_session(:username, user.name)
         |> redirect(to: user_session_path(conn, :home))
       false -> 

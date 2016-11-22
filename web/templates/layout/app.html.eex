@@ -51,15 +51,16 @@
                                 <li><a class="menu-item" href="/projects">项目</a></li>
                                 <li><a class="menu-item" href="/about">关于</a></li>
                             </ul>
-                            <ul class="nav navbar-nav navbar-right">
+                            <ul class="nav navbar-right">
                                 <li class="dropdown">
                                     <a href="<%= user_session_path(@conn, :home)%>" class="dropdown-toggle" 
                                        data-toggle="dropdown" role="button" 
                                        aria-expanded="false">
-                                       <%= Plug.Conn.get_session(@conn, :username) %> 
+                                       <img class="avatar" src="<%= Plug.Conn.get_session(@conn, :user_avatar) %>">
                                        <span class="caret"></span>
                                     </a>
                                     <ul class="dropdown-menu" role="menu">
+                                        <li><%= link Plug.Conn.get_session(@conn, :username), to: user_session_path(@conn, :home) %></li>
                                         <li><%= link "管理", to: user_session_path(@conn, :home) %></li>
                                         <li><%= link "登出", to: session_path(@conn, :delete) %></li>
                                     </ul>

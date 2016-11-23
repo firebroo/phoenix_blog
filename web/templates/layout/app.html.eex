@@ -46,7 +46,7 @@
                     </div>
                     <div class="collapse navbar-collapse fix-top" id="blog-navbar-collapse">
                         <%= if Plug.Conn.get_session(@conn, :user_id) do %> 
-                            <ul class="nav navbar-nav">
+                            <ul class="nav navbar-nav navbar-self">
                                 <li><a class="menu-item" href="/achieve">归档</a></li>
                                 <li><a class="menu-item" href="/projects">项目</a></li>
                                 <li><a class="menu-item" href="/about">关于</a></li>
@@ -60,8 +60,10 @@
                                        <span class="caret"></span>
                                     </a>
                                     <ul class="dropdown-menu" role="menu">
-                                        <li><%= link Plug.Conn.get_session(@conn, :username), to: user_session_path(@conn, :home) %></li>
+                                        <li><%= link Plug.Conn.get_session(@conn, :username), to: user_profile_path(@conn, :show) %></li>
+                                        <li class="divider"></li>
                                         <li><%= link "管理", to: user_session_path(@conn, :home) %></li>
+                                        <li class="divider"></li>
                                         <li><%= link "登出", to: session_path(@conn, :delete) %></li>
                                     </ul>
                                 </li>

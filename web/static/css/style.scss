@@ -1,17 +1,17 @@
 @mixin transform-action($style) {
-       transform: $style;
-       -o-transform: $style;
+   -webkit-transform: $style; 
+      -moz-transform: $style;
        -ms-transform: $style;
-       -moz-transform: $style;
-       -webkit-transform: $style; 
+        -o-transform: $style;
+           transform: $style;
 }
 
 @mixin image-animation($style) {
-    animation:widget-user-image $style;
-    -o-animation:widget-user-image $style;
-    -ms-animation:widget-user-image $style;
-    -moz-animation:widget-user-image $style;
     -webkit-animation:widget-user-image $style;
+       -moz-animation:widget-user-image $style;
+        -ms-animation:widget-user-image $style;
+         -o-animation:widget-user-image $style;
+            animation:widget-user-image $style;
 }
 
 @keyframes widget-user-image {
@@ -47,21 +47,20 @@
 }
 
 select {
-
-  appearance:none;
-  -moz-appearance:none;
-  -webkit-appearance:none;
-
-  /*在选择框的最右侧中间显示小箭头图片*/
-  background: url("/images/arrow.png") no-repeat scroll right center transparent;
-
-
-  padding-right: 14px;
+    height: 34px; 
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+    transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+    -webkit-appearance: none;
+       -moz-appearance: none;
+            appearance: none;
+    /*在选择框的最右侧中间显示小箭头图片*/
+    background: url("/images/arrow.png") no-repeat scroll right center transparent;
+    padding-right: 14px;
+    padding-left: 3px;
 }
-
-
-/*清除ie的默认选择框样式清除，隐藏下拉箭头*/
-select::-ms-expand { display: none; }
 
 .box {
     background-color: #fff;
@@ -180,17 +179,7 @@ select::-ms-expand { display: none; }
     background-color: #52768e!important;
 }
 
-.dropdown-menu>li>a {
-    padding: 5px 20px;
-    &:hover {
-        border-radius: 0px!important; 
-    }
-}
 
-.dropdown-menu {
-    padding: 0px;
-    margin-right: 10px;
-}
 
 table {
     table-layout:fixed;
@@ -211,26 +200,24 @@ table {
         display: inline-block;
 }
 
-.avatar-96 {
-    width: 96px;
-    height: 96px;
-    border-radius: 120px;
-}
-.avatar-48 {
-    width: 48px;
-    height: 48px;
+@mixin avatar($width: 73px) {
+    width: $width;
+    height: $width;
     border-radius: 120px;
 }
 
+.avatar-96 {
+    @include avatar(96px);
+}
+
+.avatar-48 {
+    @include avatar(48px);
+}
 .avatar-32 {
-    width: 32px;
-    height: 32px;
-    border-radius: 120px;
+    @include avatar(32px);
 }
 .avatar-16 {
-    width: 16px;
-    height: 16px;
-    border-radius: 120px;
+    @include avatar(16px);
 }
 
 .hot-posts {
@@ -239,4 +226,52 @@ table {
         white-space: nowrap;
         text-overflow: ellipsis;
     }
+}
+
+.navbar-self>li>a {
+    margin:8px 10px;
+    padding:5px 20px!important;
+    border:1px solid #3f5b6e!important;
+    border-radius:50px;background:rgba(82,118,142,.25)!important;
+    color:#fff;font-size:1em;
+    text-shadow:#666 1px 1px 2px;
+    &:hover {
+        color:#FF6E40;
+        border:1px solid #FF6E40!important;
+        background:#3f5b6e;
+    }
+    &:active {
+        background:#3f5b6e;
+    }
+}
+
+$text-shadow: 5px 5px 5px #3f5b6e;
+
+.navbar-header {
+    a {
+        color: #fff;
+        font-size: 1.9em;
+        text-decoration: none;
+        text-shadow: $text-shadow;
+        &:hover {
+            color: #FF6E40;
+            text-shadow: $text-shadow;
+        }
+    }
+    .navbar-brand:hover {
+        color: #FF6E40;
+    }
+}
+
+header .description {
+    font-size: 1.4em;
+    text-shadow: $text-shadow;
+}
+
+.dropdown-menu {
+    padding: 0px;
+    margin-right: 10px;
+    &>li>a:hover {
+        background-color:#3f5b6e!important;
+    } 
 }

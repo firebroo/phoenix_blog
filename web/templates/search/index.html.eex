@@ -10,7 +10,7 @@
                 <%= else %>
                     <div class="widget widget-default">
                         <div class="widget-header">
-                            <h3>搜索 "sadfasdf"</h3>
+                            <h3>搜索 "<%= Map.get(@conn.params, "q") %>"</h3>
                         </div>
                         <div class="widget-body">
                             <h4>什么也没搜到...</h4>

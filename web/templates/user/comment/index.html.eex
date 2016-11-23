@@ -18,8 +18,8 @@
                                 <%= for comment <- @comments do %>
                                 <tr>
                                     <th scope="row"><%= comment.id %></th>
-                                    <td class="over"><%= comment.name %></td>
-                                    <td class="over"><%= comment.body %></td>
+                                    <td class="over"><a href="#" title="<%= comment.name%>"><%= comment.name %></a></td>
+                                    <td class="over"><a href="#" title="<%= comment.body%>"><%= comment.body %></a></td>
                                     <td ><%= article_name(comment) %></td>
                                     <td class="text-right">
                                       <%= link "Edit", to: user_comment_path(@conn, :edit, comment), class: "btn btn-xs btn-warning" %>

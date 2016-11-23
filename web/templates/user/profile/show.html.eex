@@ -16,9 +16,12 @@
                             <span class="ff elehead">禁止使用任何低俗或者敏感图片作为头像</span>
                         </div>
                         <hr>
-                        <div class="form-group ele">
+                        <div class="form-group ele avatar-preview">
                             <p id="profile" >Profile picture</p>
-                            <img id="avatar_update" class="avatar upload" src=<%= @avatar %> >
+                            <img id="avatar_update" class="avatar-96 upload" src=<%= @avatar %> >
+                            <img id="avatar_update" class="avatar-48 upload" src=<%= @avatar %> >
+                            <img id="avatar_update" class="avatar-32 upload" src=<%= @avatar %> >
+                            <img id="avatar_update" class="avatar-16 upload" src=<%= @avatar %> >
                             <%= file_input f, :avatar, class: "file", id: "upload_button" %>
                         </div>
 

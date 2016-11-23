@@ -69,12 +69,12 @@
                                 </li>
                             </ul>
                         <% else %>
-                            <ul class="nav navbar-nav">
+                            <ul class="nav navbar-nav navbar-self">
                                 <li><a class="menu-item" href="/achieve">归档</a></li>
                                 <li><a class="menu-item" href="/projects">项目</a></li>
                                 <li><a class="menu-item" href="/about">关于</a></li>
                             </ul>
-                            <ul class="nav navbar-nav navbar-right blog-navbar">
+                            <ul class="nav navbar-nav navbar-right blog-navbar navbar-self">
                                 <li><%= link "登录", to: session_path(@conn, :new) %></a></li>
                             </ul>
                             <form class="navbar-form navbar-right" role="search" method="get" action="/search">

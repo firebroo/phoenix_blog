@@ -3,9 +3,9 @@
     <ul class="widget-body">
         <div class="tag-list">
             <%= for tag <- @tags do %>
-            <a  title="<%= tag.name %>" href="<%= tag_path(@conn, :show, tag.name)%>" class="tag">
+            <a title="<%= tag.name %>" href="<%= tag_path(@conn, :show, tag.name)%>" class="tag">
                 <%= tag.name %>
-                <span class="badge"><%= Enum.count tag.articles%></span>
+                <span class="badge"><%= tag.articles |> Enum.filter(fn x -> x.block == false end) |> Enum.count %></span>
             </a>
             <% end %>
         </div>

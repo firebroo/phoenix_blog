@@ -5,6 +5,7 @@ defmodule HelloPhoenix.AchieveController do
 
   def index(conn, _params) do
     articles = Article
+    |> where(block: false)
     |> order_by(desc: :inserted_at)
     |> Repo.all
     |> Repo.preload(:category)

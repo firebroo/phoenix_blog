@@ -18,6 +18,7 @@ defmodule HelloPhoenix.CategoryController do
 
     hot_articles = ConCache.get_or_store(:hello_phoenix, "hot_articles", fn() -> 
       Article
+      |> where(block: false)
       |> order_by(desc: :reading)
       |> limit(10)
       |> Repo.all
@@ -34,6 +35,7 @@ defmodule HelloPhoenix.CategoryController do
     conn = common(conn, params)
     pagination = ConCache.get_or_store(:hello_phoenix, "pagination", fn() -> 
       Article
+      |> where(block: false)
       |> order_by(desc: :inserted_at)
       |> preload([:category, :tags, :comments])
       |> Repo.paginate(params)
@@ -50,12 +52,14 @@ defmodule HelloPhoenix.CategoryController do
       {:ok, id} ->
         category = Category |> where(hash_id: ^id) |> Repo.one!
         Article
+        |> where(block: false)
         |> where(category_id: ^category.id)
         |> order_by(desc: :inserted_at)
         |> preload([:category, :tags, :comments])
         |> Repo.paginate(params)
       {:error} ->
         Article
+        |> where(block: false)
         |> order_by(desc: :inserted_at)
         |> preload([:category, :tags, :comments])
         |> Repo.paginate(params)

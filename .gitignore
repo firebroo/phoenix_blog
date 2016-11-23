@@ -1,4 +1,5 @@
 # App artifacts
+config/dev.exs
 /_build
 /db
 /deps
@@ -22,4 +23,5 @@ erl_crash.dump
 # secrets file as long as you replace its contents by environment
 # variables.
 /config/prod.secret.exs
-/web/static/css/*.map
+web/static/css/*.map
+config/dev.exs

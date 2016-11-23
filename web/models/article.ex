@@ -6,6 +6,7 @@ defmodule HelloPhoenix.Article do
     field :body, :string
     field :reading, :integer, default: 0
     field :hash_id, :string
+    field :block, :boolean, default: false
     belongs_to :category, HelloPhoenix.Category, foreign_key: :category_id
 
     has_many :comments, HelloPhoenix.Comment, on_delete: :delete_all
@@ -19,7 +20,7 @@ defmodule HelloPhoenix.Article do
   """
   def changeset(struct, params \\ %{}) do
     struct
-    |> cast(params, [:title, :body, :reading, :category_id])
+    |> cast(params, [:title, :body, :reading, :category_id, :block])
     |> validate_required([:title, :body, :category_id])
     #|> strip_unsafe_body(params)
     |> validate_length(:title, min: 5)

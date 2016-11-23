@@ -21,6 +21,7 @@ defmodule HelloPhoenix.TagController do
     # 缓存热门文章
     hot_articles = ConCache.get_or_store(:hello_phoenix, "hot_articles", fn() -> 
       Article
+      |> where(block: false)
       |> order_by(desc: :reading)
       |> limit(10)
       |> Repo.all
@@ -39,6 +40,7 @@ defmodule HelloPhoenix.TagController do
       {:ok, id} ->
         tag = Tag |> where(name: ^id) |> Repo.one
         Article
+        |> where(block: false)
         |> join(:inner, [a], at in ArticleTag, at.tag_id == ^tag.id and at.article_id == a.id)
         |> preload([:category, :tags, :comments])
         |> order_by(desc: :inserted_at)
@@ -47,6 +49,7 @@ defmodule HelloPhoenix.TagController do
         # 缓存所有文章
         ConCache.get_or_store(:hello_phoenix, "pagination", fn() -> 
           Article
+          |> where(block: false)
           |> order_by(desc: :inserted_at)
           |> preload([:category, :tags, :comments])
           |> Repo.paginate(params)

@@ -4,7 +4,7 @@
         <%= for category <- @categorys do %>
         <a title="<%= category.name %>" href="<%= category_path(@conn, :show, category.hash_id) %>" class="list-group-item">
             <%= category.name %> 
-            <span class="badge"><%= Enum.count category.articles%></span>
+            <span class="badge"><%= category.articles |> Enum.filter(fn x -> x.block == false end) |> Enum.count %></span>
         </a>
         <% end %>
     </ul>

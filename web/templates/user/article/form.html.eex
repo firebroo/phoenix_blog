@@ -5,6 +5,7 @@
     </div>
   <% end %>
 
+
   <div class="form-group">
     <%= label f, :category, "选择范畴", class: "control-label" %>
     <%= select f, :category_id,
@@ -17,7 +18,6 @@
     <%= text_input f, :title, class: "form-control",placeholder: "文章标题" %>
     <%= error_tag f, :title %>
   </div>
-  
 
   <div class="form-group">
     <%= label f, :title, "选择范畴", class: "control-label", style: "display: block" %>
@@ -34,6 +34,11 @@
     <%= label f, :body, "文章内容", class: "control-label" %>
     <%= textarea f, :body, class: "form-control", id: "article_body", rows: 20 %>
     <%= error_tag f, :body %>
+  </div>
+
+  <div class="form-group">
+    <%= label f, :block, "首页不显示", class: "control-label" %>
+    <%= checkbox f, :block %> 
   </div>
 
   <div class="form-group">

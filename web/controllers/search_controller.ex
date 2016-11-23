@@ -13,6 +13,7 @@ defmodule HelloPhoenix.SearchController do
     |> Repo.preload(:articles)
   
     hot_articles = Article
+    |> where(block: false)
     |> order_by(desc: :reading)
     |> limit(10)
     |> Repo.all
@@ -30,6 +31,7 @@ defmodule HelloPhoenix.SearchController do
         query = "%" <> query <> "%"
         conn = common(conn, params)
         articles = from(a in Article, where: like(a.body, ^query)) 
+                   |> where(block: false)
                    |> order_by(desc: :inserted_at)
                    |> preload([:comments, :category, :tags]) 
                    |> Repo.paginate(params)

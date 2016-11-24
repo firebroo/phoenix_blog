@@ -19,7 +19,7 @@ defmodule HelloPhoenix.User.TagController do
     case Repo.insert(changeset) do
       {:ok, _tag} ->
         conn
-        |> put_flash(:info, "Tag created successfully.")
+        |> put_flash(:info, "标签创建成功。")
         |> redirect(to: user_tag_path(conn, :index))
       {:error, changeset} ->
         render(conn, "new.html", changeset: changeset)
@@ -44,7 +44,7 @@ defmodule HelloPhoenix.User.TagController do
     case Repo.update(changeset) do
       {:ok, tag} ->
         conn
-        |> put_flash(:info, "Tag updated successfully.")
+        |> put_flash(:info, "标签更新成功。")
         |> redirect(to: user_tag_path(conn, :index))
       {:error, changeset} ->
         render(conn, "edit.html", tag: tag, changeset: changeset)
@@ -59,7 +59,7 @@ defmodule HelloPhoenix.User.TagController do
     Repo.delete!(tag)
 
     conn
-    |> put_flash(:info, "Tag deleted successfully.")
+    |> put_flash(:info, "标签删除成功。")
     |> redirect(to: user_tag_path(conn, :index))
   end
 end

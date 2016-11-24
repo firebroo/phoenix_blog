@@ -37,7 +37,7 @@ defmodule HelloPhoenix.User.ArticleController do
         |> Repo.update!
 
         conn
-        |> put_flash(:info, "Article created successfully.")
+        |> put_flash(:info, "文章创建成功。")
         |> redirect(to: user_article_path(conn, :index))
       {:error, changeset} ->
         conn
@@ -56,7 +56,7 @@ defmodule HelloPhoenix.User.ArticleController do
       {:ok, _article} ->
 
         conn
-        |> put_flash(:info, "Article created successfully.")
+        |> put_flash(:info, "文章创建成功。")
         |> redirect(to: user_article_path(conn, :index))
       {:error, changeset} ->
         conn
@@ -120,7 +120,7 @@ defmodule HelloPhoenix.User.ArticleController do
         |> Repo.update!
 
         conn
-        |> put_flash(:info, "Article updated successfully.")
+        |> put_flash(:info, "文章更新成功。")
         |> redirect(to: user_article_path(conn, :show, article))
       {:error, changeset} ->
         conn
@@ -142,7 +142,7 @@ defmodule HelloPhoenix.User.ArticleController do
         from(p in ArticleTag, where: p.article_id == ^id) |> Repo.delete_all  # 删除之前所有关联
 
         conn
-        |> put_flash(:info, "Article updated successfully.")
+        |> put_flash(:info, "文章更新成功。")
         |> redirect(to: user_article_path(conn, :show, article))
       {:error, changeset} ->
         conn
@@ -164,7 +164,7 @@ defmodule HelloPhoenix.User.ArticleController do
     Repo.delete!(article)
 
     conn
-    |> put_flash(:info, "Article deleted successfully.")
+    |> put_flash(:info, "文章删除成功。")
     |> redirect(to: user_article_path(conn, :index))
   end
 end

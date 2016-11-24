@@ -47,7 +47,7 @@ defmodule HelloPhoenix.User.CommentController do
     case Repo.update(changeset) do
       {:ok, comment} ->
         conn
-        |> put_flash(:info, "Comment updated successfully.")
+        |> put_flash(:info, "评论更新成功。")
         |> redirect(to: user_comment_path(conn, :index))
       {:error, changeset} ->
         render(conn, "edit.html", comment: comment, changeset: changeset)
@@ -62,7 +62,7 @@ defmodule HelloPhoenix.User.CommentController do
     Repo.delete!(comment)
 
     conn
-    |> put_flash(:info, "Comment deleted successfully.")
+    |> put_flash(:info, "评论删除成功。")
     |> redirect(to: user_comment_path(conn, :index))
   end
 end

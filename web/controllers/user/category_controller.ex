@@ -19,7 +19,7 @@ defmodule HelloPhoenix.User.CategoryController do
     case Repo.insert(changeset) do
       {:ok, _category} ->
         conn
-        |> put_flash(:info, "Category created successfully.")
+        |> put_flash(:info, "范畴创建成功。")
         |> redirect(to: user_category_path(conn, :index))
       {:error, changeset} ->
         render(conn, "new.html", changeset: changeset)
@@ -44,7 +44,7 @@ defmodule HelloPhoenix.User.CategoryController do
     case Repo.update(changeset) do
       {:ok, category} ->
         conn
-        |> put_flash(:info, "Category updated successfully.")
+        |> put_flash(:info, "范畴更新成功。")
         |> redirect(to: user_category_path(conn, :index))
       {:error, changeset} ->
         render(conn, "edit.html", category: category, changeset: changeset)
@@ -59,7 +59,7 @@ defmodule HelloPhoenix.User.CategoryController do
     Repo.delete!(category)
 
     conn
-    |> put_flash(:info, "Category deleted successfully.")
+    |> put_flash(:info, "范畴删除成功。")
     |> redirect(to: user_category_path(conn, :index))
   end
 end

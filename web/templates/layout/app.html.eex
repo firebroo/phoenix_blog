@@ -89,6 +89,25 @@
             </div>
         </header>
 
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                <%= if flash = get_flash(@conn, :info) do %>
+                    <div class="alert alert-success">
+                        <a class="close" data-dismiss="alert" href="#"><i class="fa fa-close"></i></a>
+                    <%= flash %>
+                    </div>
+                <%= end %>
+                <%= if flash = get_flash(@conn, :error) do %>
+                    <div class="alert alert-danger">
+                        <a class="close" data-dismiss="alert" href="#"><i class="fa fa-close"></i></a>
+                    <%= flash %>
+                    </div>
+                <%= end %>
+                </div>
+            </div>
+        </div>
+
         <%= render @view_module, @view_template, assigns %>
         <footer class="footer" id="footer">
             <div class="copyright">

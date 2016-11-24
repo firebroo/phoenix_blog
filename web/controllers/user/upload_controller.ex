@@ -34,7 +34,6 @@ defmodule HelloPhoenix.User.UploadController do
 
               conn
               |> put_flash(:info, "修改头像成功")
-              |> assign(:changeset, changeset)
               |> redirect(to: user_profile_path(conn, :show))
             {:error, _} ->
               changeset = changeset |> add_error(:avatar, "上传出错", message: "上传出错")

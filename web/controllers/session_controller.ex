@@ -33,7 +33,7 @@ defmodule HelloPhoenix.SessionController do
       false -> 
         conn
         |> assign(:changeset, changeset)
-        |> put_flash(:error, "登陆失败")
+        |> put_flash(:error, "登陆失败,用户或者密码错误。")
         |> render("new.html")
     end
   end
@@ -55,6 +55,8 @@ defmodule HelloPhoenix.SessionController do
     conn
     |> delete_session(:user_id)
     |> delete_session(:username)
+    |> delete_session(:user_avatar)
+    |> put_flash(:info, "退出成功。") 
     |> redirect(to: session_path(conn, :new))
   end
 end

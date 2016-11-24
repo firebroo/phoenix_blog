@@ -17,7 +17,7 @@
                                 </tr>
                                 <%= for comment <- @comments do %>
                                 <tr>
-                                    <th scope="row"><%= comment.id %></th>
+                                    <td><%= comment.id %></td>
                                     <td class="over"><a href="#" title="<%= comment.name%>"><%= comment.name %></a></td>
                                     <td class="over"><a href="#" title="<%= comment.body%>"><%= comment.body %></a></td>
                                     <td ><%= article_name(comment) %></td>

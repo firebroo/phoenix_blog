@@ -13,7 +13,7 @@ defmodule HelloPhoenix.ArticleController do
         if category_id != article.category.hash_id do
             conn 
             |> put_layout(false)
-            |> render HelloPhoenix.ErrorView, "404.html" 
+            |> render(HelloPhoenix.ErrorView, "404.html") 
         else
             comments = Comment
             |> where(article_id: ^article.id)

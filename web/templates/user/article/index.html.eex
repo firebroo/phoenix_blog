@@ -21,7 +21,7 @@
                                 </tr>
                                 <%= for article <- @articles do %>
                                 <tr>
-                                    <th scope="row"><%= article.id %></th>
+                                    <td><%= article.id %></td>
                                     <td><%= article.title %></td>
                                     <td><%= article.reading %></td>
                                     <td><%= category_name(article) %></td>

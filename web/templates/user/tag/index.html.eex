@@ -18,7 +18,7 @@
                                 </tr>
                                 <%= for tag <- @tags do %>
                                 <tr>
-                                    <th scope="row"><%= tag.id %></th>
+                                    <td><%= tag.id %></td>
                                     <td><%= tag.name %></td>
                                     <td class="text-right">
                                       <%= link "Edit", to: user_tag_path(@conn, :edit, tag), class: "btn btn-warning" %>

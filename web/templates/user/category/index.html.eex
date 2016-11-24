@@ -18,7 +18,7 @@
                                 </tr>
                                 <%= for category <- @categorys do %>
                                 <tr>
-                                    <th scope="row"><%= category.id %></th>
+                                    <td><%= category.id %></td>
                                     <td><%= category.name %></td>
                                     <td class="text-right">
                                         <%= link "Edit", to: user_category_path(@conn, :edit, category), class: "btn btn-default btn-warning" %>

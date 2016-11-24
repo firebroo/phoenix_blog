@@ -28,10 +28,16 @@ defmodule HelloPhoenix.TagController do
       |> Repo.preload(:category)
     end)
 
+    links = ConCache.get_or_store(:hello_phoenix, "links", fn() -> 
+      Link
+      |> Repo.all
+    end)
+
     conn
     |> assign(:hot_articles, hot_articles)
     |> assign(:categorys, categorys)
     |> assign(:tags, tags)
+    |> assign(:links, links)
   end
   
   def show(conn, params) do

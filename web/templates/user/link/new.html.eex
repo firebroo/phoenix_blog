@@ -1,0 +1,18 @@
+<div id="content-wrap">
+    <div class="container">
+        <div class="row">
+            <%= render HelloPhoenix.ShareView, "user_left_nagiva.html", conn: @conn %>
+            <div class="col-md-10">
+                <div class="edit">
+                    <div class="header">
+                        <span>创建标签</span>
+                    </div>
+                    <div class="body">
+                        <%= render "form.html", changeset: @changeset,
+                                        action: user_link_path(@conn, :create) %>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

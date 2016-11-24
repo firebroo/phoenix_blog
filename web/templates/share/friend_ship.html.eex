@@ -1,16 +1,10 @@
 <!-- 友情链接 -->
-<% links=[["Braid's Blog",   "http://www.cnbraid.com"],
-          ["Tnt1200's Blog", "http://tnt1200.github.io/"],
-          ["阿德马Web安全",  "http://www.nxadmin.com/"],
-          ["从容's Blog",    "http://www.thinkings.org/"],
-          ["Mars's Blog",    "http://mars.run/"]] %>
-
 <div class="widget widget-default">
     <div class="widget-header"><h6><i class="fa fa-link fa-fw"></i>友情链接</h6></div>
     <ul class="widget-body hot-posts">
-        <%= for [name, href] <- links do %>
-        <a class="list-group-item" title="<%= name %>" href="<%= href %>" target="_blank">
-            <%= name %>
+        <%= for link <- @links do %>
+        <a class="list-group-item" title="<%= link.name %>" href="<%= link.url %>" target="_blank">
+            <%= link.name %>
             <span class="clearfix"></span>
         </a>
         <% end %>

@@ -1,0 +1,39 @@
+<div id="content-wrap">
+    <div class="container">
+        <div class="row">
+            <%= render HelloPhoenix.ShareView, "user_left_nagiva.html", conn: @conn %>
+            <div class="col-md-10">
+                <div class="panel panel-default">
+                    <div class="panel-heading">友链列表</div>
+                    <div class="panel-body">
+                        <div class="navbar">
+                            <%= link "创建友链", to: user_link_path(@conn, :new), class: "btn btn-success" %>
+                        </div>
+                        <table class="table table-hover table-top table-cell-mid">
+                            <tbody>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>人物</th>
+                                    <th>链接</th>
+                                    <th class="text-right">操作</th>
+                                </tr>
+                                <%= for link <- @links do %>
+                                <tr>
+                                    <td><%= link.id %></td>
+                                    <td><%= link.name %></td>
+                                    <td><%= link.url %></td>
+                                    <td class="text-right">
+                                      <%= link "Edit", to: user_link_path(@conn, :edit, link), class: "btn btn-warning" %>
+                                      <%= link "Delete", to: user_link_path(@conn, :delete, link), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger" %>
+                                    </td>
+                                </tr>
+                                <% end %>
+                            </tbody>
+                       </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

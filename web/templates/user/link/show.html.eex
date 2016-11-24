@@ -1,0 +1,13 @@
+<h2>Show link</h2>
+
+<ul>
+
+  <li>
+    <strong>Name:</strong>
+    <%= @link.name %>
+  </li>
+
+</ul>
+
+<%= link "Edit", to: user_link_path(@conn, :edit, @link) %>
+<%= link "Back", to: user_link_path(@conn, :index) %>

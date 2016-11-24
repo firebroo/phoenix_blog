@@ -40,6 +40,7 @@ defmodule HelloPhoenix.Router do
     resources "/articles", User.ArticleController
     resources "/comments", User.CommentController
     resources "/tags", User.TagController
+    resources "/links", User.LinkController
   end
 
   scope "/", HelloPhoenix do

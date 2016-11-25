@@ -3,7 +3,7 @@ defmodule HelloPhoenix.SearchController do
 
   alias HelloPhoenix.{Category, Tag, Article}
 
-  defp common(conn, params) do
+  defp common(conn) do
     categorys = Category
     |> Repo.all
     |> Repo.preload(:articles)
@@ -26,10 +26,10 @@ defmodule HelloPhoenix.SearchController do
   end
 
   def index(conn, params) do
+    conn = common(conn)
     pagination = case Map.fetch(params, "q") do
       {:ok, query} ->
         query = "%" <> query <> "%"
-        conn = common(conn, params)
         articles = from(a in Article, where: like(a.body, ^query)) 
                    |> where(block: false)
                    |> order_by(desc: :inserted_at)

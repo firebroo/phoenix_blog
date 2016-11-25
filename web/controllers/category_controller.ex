@@ -3,7 +3,7 @@ defmodule HelloPhoenix.CategoryController do
 
   alias HelloPhoenix.{Category, Article, Tag, Link}
 
-  defp common(conn, params) do
+  defp common(conn) do
     categorys = ConCache.get_or_store(:hello_phoenix, "categorys", fn() -> 
       Category
       |> Repo.all
@@ -38,7 +38,7 @@ defmodule HelloPhoenix.CategoryController do
   end
 
   def index(conn, params) do
-    conn = common(conn, params)
+    conn = common(conn)
     pagination = ConCache.get_or_store(:hello_phoenix, "pagination", fn() -> 
       Article
       |> where(block: false)
@@ -53,7 +53,7 @@ defmodule HelloPhoenix.CategoryController do
   end
 
   def show(conn, params) do
-    conn = common(conn, params)
+    conn = common(conn)
     pagination = case Map.fetch(params, "id") do
       {:ok, id} ->
         category = Category |> where(hash_id: ^id) |> Repo.one!

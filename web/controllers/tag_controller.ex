@@ -1,9 +1,9 @@
 defmodule HelloPhoenix.TagController do
   use HelloPhoenix.Web, :controller
 
-  alias HelloPhoenix.{Category, Article, Tag, ArticleTag}
+  alias HelloPhoenix.{Category, Article, Tag, ArticleTag, Link}
 
-  defp common(conn, params) do
+  defp common(conn) do
     # 缓存所有categorys
     categorys = ConCache.get_or_store(:hello_phoenix, "categorys", fn() -> 
       Category
@@ -41,7 +41,7 @@ defmodule HelloPhoenix.TagController do
   end
   
   def show(conn, params) do
-    conn = common(conn, params)
+    conn = common(conn)
     pagination = case Map.fetch(params, "id") do
       {:ok, id} ->
         tag = Tag |> where(name: ^id) |> Repo.one

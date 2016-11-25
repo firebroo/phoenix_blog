@@ -42,7 +42,7 @@ defmodule HelloPhoenix.User.TagController do
     changeset = Tag.changeset(tag, tag_params)
 
     case Repo.update(changeset) do
-      {:ok, tag} ->
+      {:ok, _tag} ->
         conn
         |> put_flash(:info, "标签更新成功。")
         |> redirect(to: user_tag_path(conn, :index))

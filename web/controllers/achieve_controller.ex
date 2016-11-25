@@ -1,7 +1,7 @@
 defmodule HelloPhoenix.AchieveController do
   use HelloPhoenix.Web, :controller
 
-  alias HelloPhoenix.{Category, Article, Tag, ArticleTag}
+  alias HelloPhoenix.{Article}
 
   def index(conn, _params) do
     articles = Article

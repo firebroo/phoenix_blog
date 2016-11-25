@@ -45,7 +45,7 @@ defmodule HelloPhoenix.User.CommentController do
     changeset = Comment.changeset(comment, comment_params)
 
     case Repo.update(changeset) do
-      {:ok, comment} ->
+      {:ok, _comment} ->
         conn
         |> put_flash(:info, "评论更新成功。")
         |> redirect(to: user_comment_path(conn, :index))

@@ -42,7 +42,7 @@ defmodule HelloPhoenix.User.CategoryController do
     changeset = Category.changeset(category, category_params)
 
     case Repo.update(changeset) do
-      {:ok, category} ->
+      {:ok, _category} ->
         conn
         |> put_flash(:info, "范畴更新成功。")
         |> redirect(to: user_category_path(conn, :index))

@@ -1,6 +1,6 @@
 <div class="container">
     <div id="post-detail-wrap" class="row">
-        <div class="col-md-12 phone-no-padding">
+        <div class="col-md-offset-1 col-md-10 phone-no-padding">
             <div class="post-detail">
                 <div class="center-block">
                     <div class="post-detail-title"><%= @article.title %></div>
@@ -50,7 +50,7 @@
     </div>
 
     <div class="row mt-30">
-        <div id="comment-wrap" class="col-md-12">
+        <div id="comment-wrap" class="col-md-offset-1 col-md-10">
             <div class="comment">
                 <div class="comment-header">
                     <h6 id="comments_count"><i class="fa fa-comments fa-fw"></i>评论</h6>

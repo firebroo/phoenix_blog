@@ -15,7 +15,7 @@
                             &nbsp;|&nbsp;
                             <i class="fa fa-folder-o"></i>
                             <a href="<%= category_path(@conn, :show, @article.category.hash_id)%>">
-                                算法
+                                <%= @article.category.name %>
                             </a>
                         </span>
                         <span class="post-comments-count">

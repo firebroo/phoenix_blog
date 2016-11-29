@@ -41,7 +41,7 @@ defmodule HelloPhoenix.Article do
 
   def create_changeset(struct, params \\ %{}) do
     struct
-    |> cast(params, [:title, :body, :reading, :category_id])
+    |> cast(params, [:title, :body, :reading, :category_id, :block])
     |> validate_required([:title, :body, :category_id])
     #|> strip_unsafe_body(params)
     |> validate_length(:title, min: 5)

@@ -10,7 +10,7 @@
     <%= label f, :category, "选择范畴", class: "control-label" %>
     <%= select f, :category_id,
         (for category <- @categorys, do: {category.name, category.id}),
-        prompt: "选择范畴", style: "display: block"%>
+        prompt: "选择范畴", class: "select form-control"%>
   </div>
 
   <div class="form-group">

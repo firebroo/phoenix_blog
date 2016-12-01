@@ -46,21 +46,6 @@
     text-align:center;
 }
 
-select {
-    height: 34px; 
-    background-color: #fff;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
-    transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
-    -webkit-appearance: none;
-       -moz-appearance: none;
-            appearance: none;
-    /*在选择框的最右侧中间显示小箭头图片*/
-    background: url("/images/arrow.png") no-repeat scroll right center transparent;
-    padding-right: 14px;
-    padding-left: 3px;
-}
 
 .box {
     background-color: #fff;
@@ -148,17 +133,6 @@ select {
     }
     .body {
         margin: 25px 10px;
-    }
-    select {
-        width: 30%;
-        background-color: #fff;
-        border: 1px solid #ccc;
-        appearance:none;
-        -moz-appearance:none;
-        -webkit-appearance:none;
-        /*在选择框的最右侧中间显示小箭头图片*/
-        background: url("/images/arrow.png") no-repeat scroll right center transparent;
-        padding-right: 14px;
     }
 }
 

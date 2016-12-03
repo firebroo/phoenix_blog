@@ -4,43 +4,41 @@
       <p>Oops, something went wrong! Please check the errors below.</p>
     </div>
   <% end %>
-
-
   <div class="form-group">
-    <%= label f, :category, "选择范畴", class: "control-label" %>
+    <div><%= label f, :category, "选择范畴", class: "control-label" %></div>
     <%= select f, :category_id,
         (for category <- @categorys, do: {category.name, category.id}),
         prompt: "选择范畴", class: "select form-control"%>
   </div>
-
   <div class="form-group">
-    <%= label f, :title, "标题", class: "control-label" %>
+    <div><%= label f, :title, "标题", class: "control-label" %></div>
     <%= text_input f, :title, class: "form-control",placeholder: "文章标题" %>
     <%= error_tag f, :title %>
   </div>
-
   <div class="form-group">
-    <%= label f, :title, "选择范畴", class: "control-label", style: "display: block" %>
+    <div><%= label f, :title, "选择标签", class: "control-label"%></div>
     <%= for tag <- @tags do %>
         <%=if tag in @exist_tags do %>
-            <label id="select_tag"><input name="tags[]" id="tags_" type="checkbox" value="<%= tag.id %>" checked="checked"/><%= tag.name %> </label> 
+            <label id="select_tag" class="checkbox-inline">
+                <input name="tags[]" id="tags_" type="checkbox" value="<%= tag.id %>" checked="checked"/><%= tag.name %>
+            </label> 
         <%= else %>
-            <label id="select_tag"><input name="tags[]" id="tags_" type="checkbox" value="<%= tag.id %>"/><%= tag.name %> </label> 
+            <label id="select_tag" class="checkbox-inline">
+                <input name="tags[]" id="tags_" type="checkbox" value="<%= tag.id %>"/><%= tag.name %>
+            </label> 
         <%= end %>
     <%= end %>
   </div>
-
   <div class="form-group">
     <%= label f, :body, "文章内容", class: "control-label" %>
     <%= textarea f, :body, class: "form-control", id: "article_body", rows: 20 %>
     <%= error_tag f, :body %>
   </div>
-
   <div class="form-group">
-    <%= label f, :block, "首页不显示", class: "control-label" %>
-    <%= checkbox f, :block %> 
+    <label for="article_block" class="checkbox-inline">
+        <%= checkbox f, :block %> <span style="vertical-align:middle;">首页不显示<span>
+    </label>
   </div>
-
   <div class="form-group">
     <%= submit "Submit", class: "btn-sm btn btn-primary" %>
   </div>

@@ -269,3 +269,41 @@ table {
         background: #efefef; 
     }
 }
+
+.home {
+    .preview-widget {
+        float: left;
+        padding: 10px;
+        width: 20%;
+        background: #fff;
+        .item {
+            height: 120px;
+            border: 1px solid #ddd;
+            text-align: center;
+            padding: 10px;
+            border-radius: 4px;
+            .fa {
+                font-size: 60px;
+            }
+            span {
+                margin-top: 10px;
+                display: block;
+            }
+        }
+        .item1 .fa {
+            color: #ffd52f;
+        }
+        .item2 .fa {
+            color: #3bd54e;
+        }
+        .item3 .fa {
+            color: #317dda;
+        }
+        .item4 .fa {
+            color: #f86334;
+        }
+        .item5 .fa {
+            color: #a94442;
+        }
+    }
+}

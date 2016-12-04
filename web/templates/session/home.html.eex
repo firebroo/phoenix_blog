@@ -1,40 +1,37 @@
 <div id="content-wrap">
     <div class="container">
         <div class="row">
-            <%= render HelloPhoenix.ShareView, "user_left_nagiva.html", conn: @conn %>
-            <div class="col-md-10">
-                <div class="panel panel-default">
-                    <div class="panel-heading">文章列表</div>
-                    <div class="panel-body">
-                        <div class="navbar">
-                            <%= link "创建文章", to: user_article_path(@conn, :new), class: "btn btn-success" %>
+            <div class="col-md-12">
+                <div class="home">
+                    <div class="preview-widget">
+                        <div class="item item1"> 
+                            <i class="fa fa-file-text-o"></i>
+                            <span><%= link (Integer.to_string(@article_count) <> "篇文章"), to: user_article_path(@conn, :index) %></span>
                         </div>
-                        <table class="table table-hover table-top table-cell-mid">
-                            <tbody>
-                                <tr>
-                                    <th>ID</th>
-                                    <th>标题</th>
-                                    <th>点击次数</th>
-                                    <th>所属范畴</th>
-                                    <th>Block</th>
-                                    <th class="text-right">操作</th>
-                                </tr>
-                                <%= for article <- @articles do %>
-                                <tr>
-                                    <td><%= article.id %></td>
-                                    <td><%= article.title %></td>
-                                    <td><%= article.reading %></td>
-                                    <td><%= category_name(article) %></td>
-                                    <td><%= article.block %></td>
-                                    <td class="text-right">
-                                        <%= link "Show", to: user_article_path(@conn, :show, article), class: "btn btn-info btn-xs" %>
-                                        <%= link "Edit", to: user_article_path(@conn, :edit, article), class: "btn btn-warning btn-xs" %>
-                                        <%= link "Delete", to: user_article_path(@conn, :delete, article), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs" %>
-                                    </td>
-                                </tr>
-                                <% end %>
-                            </tbody>
-                       </table>
+                    </div>
+                    <div class="preview-widget">
+                        <div class="item item2"> 
+                            <i class="fa fa-folder-o"></i>
+                            <span><%= link (Integer.to_string(@category_count) <> "个范畴"), to: user_category_path(@conn, :index) %></span>
+                        </div>
+                    </div>
+                    <div class="preview-widget">
+                        <div class="item item5"> 
+                            <i class="fa fa-tags"></i>
+                            <span><%= link (Integer.to_string(@tag_count) <> "个标签"), to: user_tag_path(@conn, :index) %></span>
+                        </div>
+                    </div>
+                    <div class="preview-widget">
+                        <div class="item item4"> 
+                            <i class="fa fa-comments-o"></i>
+                            <span><%= link (Integer.to_string(@comment_count) <> "条评论"), to: user_comment_path(@conn, :index) %></span>
+                        </div>
+                    </div>
+                    <div class="preview-widget">
+                        <div class="item item3"> 
+                            <i class="fa fa-link"></i>
+                            <span><%= link (Integer.to_string(@link_count) <> "个友链"), to: user_link_path(@conn, :index) %></span>
+                        </div>
                     </div>
                 </div>
             </div>

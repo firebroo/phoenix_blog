@@ -3,6 +3,7 @@
         <div class="panel-heading">菜单</div>
         <div class="panel-body text-center">
             <ul class="nav nav-list">
+                <li><%= link "用户主页", to: user_session_path(@conn, :home) %></li>
                 <li><%= link "管理文章", to: user_article_path(@conn, :index) %></li>
                 <li><%= link "管理范畴", to: user_category_path(@conn, :index) %></li>
                 <li><%= link "管理标签", to: user_tag_path(@conn, :index) %></li>

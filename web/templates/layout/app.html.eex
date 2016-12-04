@@ -62,7 +62,8 @@
                                     <ul class="dropdown-menu" role="menu">
                                         <li><%= link Plug.Conn.get_session(@conn, :username), to: user_profile_path(@conn, :show) %></li>
                                         <li class="divider"></li>
-                                        <li><%= link "管理", to: user_session_path(@conn, :home) %></li>
+                                        <li><%= link "主页", to: user_session_path(@conn, :home) %></li>
+                                        <li><%= link "管理", to: user_article_path(@conn, :index) %></li>
                                         <li class="divider"></li>
                                         <li><%= link "登出", to: session_path(@conn, :delete) %></li>
                                     </ul>

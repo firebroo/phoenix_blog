@@ -1,1 +1,6 @@
 /* This file is for your main application css. */
+/* yarn add bootstrap --save */
+@import "~bootstrap/dist/css/bootstrap.css";
+/*@import "~bootstrap/dist/css/bootstrap-theme.css";*/
+@import "./app-78cf426552.css";
+@import "./style.scss";

@@ -5,6 +5,7 @@ defmodule HelloPhoenix.User.ArticleController do
 
   def index(conn, _params) do
     articles = Article
+    |> order_by(desc: :id)
     |> Repo.all
     |> Repo.preload(:category)
 

@@ -1,7 +1,7 @@
 defmodule HelloPhoenix.SearchController do
   use HelloPhoenix.Web, :controller
 
-  alias HelloPhoenix.{Category, Tag, Article}
+  alias HelloPhoenix.{Category, Tag, Article, Link}
 
   defp common(conn) do
     categorys = Category
@@ -18,11 +18,17 @@ defmodule HelloPhoenix.SearchController do
     |> limit(10)
     |> Repo.all
     |> Repo.preload(:category)
+
+    links = ConCache.get_or_store(:hello_phoenix, "links", fn() -> 
+      Link
+      |> Repo.all
+    end)
   
     conn
     |> assign(:hot_articles, hot_articles)
     |> assign(:categorys, categorys)
     |> assign(:tags, tags)
+    |> assign(:links, links)
   end
 
   def index(conn, params) do
